@@ -1,3 +1,14 @@
+
+/** Component for homepage
+ * 
+ *  Props:
+ *  - None
+ * 
+ *  State: 
+ *  - None
+ * 
+ *  App -> Routes -> Homepage
+ */
 function Homepage() {
     return (
         <div>

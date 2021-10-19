@@ -1,8 +1,23 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import JoblyApi from "./JoblyApi";
-import JobCard from "./JobCard";
+import JobCardList from "./JobCardList";
 
+/** Component for a single company that shows details
+ *  about that company
+ * 
+ *  Props: 
+ *  - None
+ * 
+ *  State:
+ *  - company
+ *      { handle, name, description, numEmployees, logoUrl, jobs:
+ *          [{ id, title, salary, equity }, ...]
+ *      }
+ * 
+ *  Routes -> CompanyDetail -> JobCardList
+ * 
+ */
 function CompanyDetail() {
     const { handle } = useParams();
     const [ company, setCompany ] = useState(null);
@@ -20,18 +35,12 @@ function CompanyDetail() {
         return <h2>Loading...</h2>
     }
 
+    console.log("Company Detail", {company});
     return (
         <div>
             <h2>{company.name}</h2>
             <p>{company.description}</p>
-            {company.jobs.map(j => (
-                <JobCard 
-                    key={j.id}
-                    title={j.title}
-                    salary={j.salary}
-                    equity={j.equity}
-                />
-            ))}
+            <JobCardList jobList={company.jobs}/>
         </div>
     )
 

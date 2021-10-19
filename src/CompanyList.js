@@ -3,6 +3,21 @@ import { useState, useEffect } from "react";
 
 import CompanyCard from "./CompanyCard";
 
+/** Component for showing a list of all Companies
+ *  in the database
+ * 
+ *  Props: 
+ *  - None
+ * 
+ *  State:
+ *  - companyList 
+ *      { companies: 
+ *          [ { handle, name, description, numEmployees, logoUrl }, ...] 
+ *      }
+ * 
+ *  Routes -> CompanyList -> CompanyCard
+ * 
+ */
 function CompanyList() {
     // useEffect on load
     const [companyList, setCompanyList] = useState(null);

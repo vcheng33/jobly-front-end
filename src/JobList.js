@@ -1,7 +1,20 @@
 import JoblyApi from "./JoblyApi";
 import { useState, useEffect } from "react";
-import JobCard from "./JobCard";
+import JobCardList from "./JobCardList";
 
+/** Component that gets a list of all jobs
+ * 
+ *  Props:
+ *  - None 
+ *  
+ *  State:
+ *  - jobList:
+ *    { jobs: 
+ *      [ { id, title, salary, equity, companyHandle, companyName }, ...] 
+ *    }
+ * 
+ *  Routes -> JobList -> { SearchForm, JobCardList }
+ */
 function JobList() {
     const [jobList, setJobList ] = useState(null);
 
@@ -19,14 +32,7 @@ function JobList() {
 
     return (
         <div>
-            {jobList.map(j => (
-                <JobCard
-                    key={j.id} 
-                    title={j.title}
-                    salary={j.salary}
-                    equity={j.equity}
-                />
-            ))}
+            <JobCardList jobList={jobList}/>
         </div>
     )
 }

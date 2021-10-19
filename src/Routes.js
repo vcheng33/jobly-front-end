@@ -4,7 +4,17 @@ import CompanyDetail from "./CompanyDetail";
 import JobList from "./JobList";
 import Homepage from "./Homepage";
 
-/** Routes for App */
+/** Routes for App 
+ * 
+ *  Props:
+ *  - None
+ * 
+ *  State: 
+ *  - None
+ * 
+ *  App -> Routes 
+ *     -> { Homepage, CompanyList, CompanyDetail, JobList}
+*/
 function Routes() {
     return(
     <Switch>

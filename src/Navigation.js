@@ -2,6 +2,17 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import "./Navigation.css";
 
+/** NavBar for Jobly App
+ * 
+ *  Props: 
+ *  - None
+ * 
+ *  State:
+ *  - None
+ * 
+ *  App -> Navigation
+ * 
+ */
 function Navigation() {
     return (
         <nav className="NavBar">
