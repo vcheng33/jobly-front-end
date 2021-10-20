@@ -26,11 +26,11 @@ function CompanyList() {
 
     useEffect(function fetchCompanyListOnLoad() {
         async function fetchCompanyList() {
-            const companiesResult = await JoblyApi.getCompanies({"name": searchTerm.searchTerm});
+            const companiesResult = await JoblyApi.getCompanies({"name": searchTerm});
             setCompanyList(companiesResult);
         }
         fetchCompanyList();
-    }, []);
+    }, [searchTerm]);
 
     
     function handleSearch(formData) {

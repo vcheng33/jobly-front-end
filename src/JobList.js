@@ -22,11 +22,11 @@ function JobList() {
 
     useEffect(function fetchJobListOnLoad() {
         async function fetchJobList() {
-            const jobsResult = await JoblyApi.getJobs({"title": searchTerm.searchTerm});
+            const jobsResult = await JoblyApi.getJobs({"title": searchTerm});
             setJobList(jobsResult);
         }
         fetchJobList();
-    }, []);
+    }, [searchTerm]);
 
     function handleSearch(formData) {
         setSearchTerm(formData.searchTerm);

@@ -48,13 +48,19 @@ class JoblyApi {
   // TO DO: Ability to search/filter for companies
   /** Get list of all companies */
   static async getCompanies(searchTerm) {
-    let res = await this.request(`companies?name=${searchTerm.name}`);
+    const res = searchTerm.name !== ""
+      ? await this.request(`companies?name=${searchTerm.name}`)
+      : await this.request(`companies/`)
+    
     return res.companies;
   }
 
   /** Get list of all jobs */
   static async getJobs(searchTerm) {
-    let res = await this.request(`jobs?title=${searchTerm.title}`);
+    const res = searchTerm.title !== ""
+      ? await this.request(`jobs?title=${searchTerm.title}`)
+      : await this.request(`jobs/`)
+
     return res.jobs;
   }
 }
