@@ -27,6 +27,15 @@ function Routes() {
         <Route exact path="/jobs">
             <JobList />
         </Route>
+        <Route exact path="/login">
+            <Login />
+        </Route>
+        <Route exact path="/signup">
+            <SignUp />
+        </Route>
+        <Route exact path="/profile">
+            <Profile />
+        </Route>
         <Route exact path="/">
             <Homepage />
         </Route>

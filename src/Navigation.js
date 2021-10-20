@@ -32,6 +32,21 @@ function Navigation() {
             Jobs
           </NavLink>
         </li>
+        <li className="nav-item me-4" >
+          <NavLink exact to="/profile" id="Navigation-link-profile">
+            Profile
+          </NavLink>
+        </li>
+        <li className="nav-item me-4" >
+          <NavLink exact to="/login" id="Navigation-link-login">
+            Login
+          </NavLink>
+        </li>
+        <li className="nav-item me-4" >
+          <NavLink exact to="/signup" id="Navigation-link-signup">
+            SignUp
+          </NavLink>
+        </li>
       </ul>
       </div>
     </nav>
