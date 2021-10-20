@@ -15,18 +15,26 @@ import "./Navigation.css";
  */
 
 function Navigation() {
-    return (
-        <nav className="Navigation row">
-          <NavLink exact to="/" className="col-10 navbar-brand">
-            Jobly
-          </NavLink>
-          <NavLink exact to="/companies" className="col-1">
+  return (
+    <nav className="Navigation navbar navbar-dark bg-primary navbar-expand-md">
+      <div className="container-fluid">
+      <NavLink exact to="/" className="navbar-brand">
+        Jobly
+      </NavLink>
+      <ul className="navbar-nav ms-auto">
+        <li className="nav-item me-4" >
+          <NavLink exact to="/companies" id="Navigation-link-companies">
             Companies
           </NavLink>
-          <NavLink exact to="/jobs" className="col-1">
+        </li>
+        <li className="nav-item me-4" >
+          <NavLink exact to="/jobs" id="Navigation-link-jobs">
             Jobs
           </NavLink>
-        </nav>
-      );
+        </li>
+      </ul>
+      </div>
+    </nav>
+  );
 }
 export default Navigation;

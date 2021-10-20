@@ -38,9 +38,9 @@ function SearchForm({ initalFormData = INITIAL_STATE, handleSearch }) {
   }
 
   return (
-    <form className="SearchForm" onSubmit={handleSubmit}>
+    <form className="SearchForm m-3 mx-5" onSubmit={handleSubmit}>
 
-      <div className="form-group">
+      <div className="form-group row justify-content-evenly">
         <input
           id="searchTerm"
           name="searchTerm"
@@ -52,7 +52,7 @@ function SearchForm({ initalFormData = INITIAL_STATE, handleSearch }) {
         />
       </div>
 
-      <button className="btn-primary btn btn-sm SearchForm-Btn">
+      <button className="btn-primary btn btn-sm SearchForm-Btn mt-2">
         Search
       </button>
 

@@ -60,7 +60,7 @@ function CompanyList() {
     }
 
     return (
-        <div>
+        <div className="CompanyCard">
             <SearchForm handleSearch={handleSearch}/>
             {companyList.map(c => (
                 <CompanyCard 

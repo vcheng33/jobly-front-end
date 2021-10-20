@@ -1,23 +1,31 @@
 .Navigation {
-    background-color: tomato;
     text-align: left;
     font-weight: bold;
   }
   
-  .Navigation a {
+  /* .Navigation a {
     padding: 0.5em 0;
     width: 10em;
     display: inline-block;
     color: white;
     text-decoration: none;
-  }
+  } */
   
   .Navigation a:hover {
-    background-color: black;
-    color: white !important;
+    background-color: rgb(5, 52, 139);
   }
   
   .Navigation a.active {
     font-weight: bold;
-    color: black;
+    background-color: navy;
+    padding: 10%;
   }
+
+#Navigation-link-companies, #Navigation-link-jobs {
+  text-decoration: none;
+  color: white;
+}
+
+.nav.navbar-nav.navbar-right li a {
+  color: blue;
+}
