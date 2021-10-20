@@ -15,6 +15,7 @@ import CompanyCard from "./CompanyCard";
  *      { companies: 
  *          [ { handle, name, description, numEmployees, logoUrl }, ...] 
  *      }
+ *  - searchTerm from searchForm
  * 
  *  Routes -> CompanyList -> CompanyCard
  * 
@@ -23,11 +24,16 @@ function CompanyList() {
     // useEffect on load
     const [companyList, setCompanyList] = useState(null);
     const [searchTerm, setSearchTerm] = useState("");
+    const [error, setError] = useState(null);
 
     useEffect(function fetchCompanyListOnLoad() {
         async function fetchCompanyList() {
-            const companiesResult = await JoblyApi.getCompanies({"name": searchTerm});
-            setCompanyList(companiesResult);
+            try {
+                const companiesResult = await JoblyApi.getCompanies({"name": searchTerm});
+                setCompanyList(companiesResult);
+            } catch  (err) {
+                setError(err);
+            }
         }
         fetchCompanyList();
     }, [searchTerm]);
@@ -37,8 +43,21 @@ function CompanyList() {
         setSearchTerm(formData.searchTerm);
     }
 
-    if (companyList === null) {
+    if (companyList === null && error === null) {
         return <h2>Loading...</h2>
+    }
+
+    if (companyList.length === 0) {
+        return (
+            <div>
+                <SearchForm handleSearch={handleSearch}/>
+                <h2>No Results Found</h2>
+            </div>
+        )
+    }
+
+    if (error) {
+        return <h2>{error}</h2>
     }
 
     return (

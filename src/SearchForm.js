@@ -14,6 +14,7 @@ import React, { useState } from "react";
      * { JobList, CompanyList } -> SearchForm
      */
     
+    // have search remain in search bar.  Make sure search bar shows when no search results.
     const INITIAL_STATE = {
       searchTerm: "",
     }
@@ -35,7 +36,7 @@ import React, { useState } from "react";
         evt.preventDefault();
         console.log("Check out state ->", formData);
         handleSearch(formData);
-        setFormData(INITIAL_STATE);
+        // setFormData(INITIAL_STATE);
       }
     
       return (
@@ -53,7 +54,7 @@ import React, { useState } from "react";
               />
             </div>
     
-              <button className="btn-primary rig btn btn-sm Search-Btn">
+              <button className="btn-primary rig btn btn-sm SearchForm-Btn">
                 Search
               </button>
     

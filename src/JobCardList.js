@@ -13,6 +13,8 @@ import JobCard from "./JobCard";
  *      -> JobCardList 
  *      -> JobCard
  */
+
+// don't need div because you are allowed a list, but helpful for styling
 function JobCardList({ jobList }) {
     console.log("JobCardList", {jobList});
     return (

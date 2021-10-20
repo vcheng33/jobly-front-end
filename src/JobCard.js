@@ -8,6 +8,9 @@
  * 
  *  JobCardList -> JobCard
 */
+
+// salary and equity formatted
+
 function JobCard({ id, title, salary, equity }) {
     return (
         <div id={id}>

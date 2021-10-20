@@ -13,16 +13,17 @@ import "./Navigation.css";
  *  App -> Navigation
  * 
  */
+
 function Navigation() {
     return (
-        <nav className="NavBar">
-          <NavLink exact to="/">
+        <nav className="Navigation row">
+          <NavLink exact to="/" className="col-10 navbar-brand">
             Jobly
           </NavLink>
-          <NavLink exact to="/companies">
+          <NavLink exact to="/companies" className="col-1">
             Companies
           </NavLink>
-          <NavLink exact to="/jobs">
+          <NavLink exact to="/jobs" className="col-1">
             Jobs
           </NavLink>
         </nav>

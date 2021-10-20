@@ -42,23 +42,25 @@ class JoblyApi {
 
   static async getCompany(handle) {
     let res = await this.request(`companies/${handle}`);
+    console.log("res.companies: ", res.company);
     return res.company;
   }
-
-  // TO DO: Ability to search/filter for companies
-  /** Get list of all companies */
+  /** Get list of all companies or companies that meet search term criteria 
+   * 
+   *  searchTerm = {"name": "searchTerm"}
+  */
   static async getCompanies(searchTerm) {
     const res = searchTerm.name !== ""
-      ? await this.request(`companies?name=${searchTerm.name}`)
+      ? await this.request(`companies/`, searchTerm)
       : await this.request(`companies/`)
     
     return res.companies;
   }
 
-  /** Get list of all jobs */
+  /** Get list of all jobs or jobs that meet search term criteria */
   static async getJobs(searchTerm) {
     const res = searchTerm.title !== ""
-      ? await this.request(`jobs?title=${searchTerm.title}`)
+      ? await this.request(`jobs/`, searchTerm)
       : await this.request(`jobs/`)
 
     return res.jobs;

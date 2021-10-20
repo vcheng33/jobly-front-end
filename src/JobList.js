@@ -13,17 +13,23 @@ import SearchForm from "./SearchForm";
  *    { jobs: 
  *      [ { id, title, salary, equity, companyHandle, companyName }, ...] 
  *    }
+ *  - searchTerm from searchForm
  * 
  *  Routes -> JobList -> { SearchForm, JobCardList }
  */
 function JobList() {
-    const [jobList, setJobList ] = useState(null);
+    const [jobList, setJobList] = useState(null);
     const [searchTerm, setSearchTerm] = useState("");
+    const [ error, setError] = useState(null);
 
     useEffect(function fetchJobListOnLoad() {
         async function fetchJobList() {
-            const jobsResult = await JoblyApi.getJobs({"title": searchTerm});
-            setJobList(jobsResult);
+            try {
+                const jobsResult = await JoblyApi.getJobs({ "title": searchTerm });
+                setJobList(jobsResult);
+            } catch (err) {
+                setError(err);
+            }
         }
         fetchJobList();
     }, [searchTerm]);
@@ -32,14 +38,27 @@ function JobList() {
         setSearchTerm(formData.searchTerm);
     }
 
-    if (jobList === null) {
+    if (jobList === null && error === null) {
         return <h2>Loading...</h2>
+    }
+
+    if (jobList.length === 0) {
+        return (
+            <div>
+                <SearchForm handleSearch={handleSearch}/>
+                <h2>No Results Found</h2>
+            </div>
+        )
+    }
+
+    if (error) {
+        return <h2>{error}</h2>
     }
 
     return (
         <div>
             <SearchForm handleSearch={handleSearch} />
-            <JobCardList jobList={jobList}/>
+            <JobCardList jobList={jobList} />
         </div>
     )
 }

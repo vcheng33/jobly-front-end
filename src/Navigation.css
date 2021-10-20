@@ -1,10 +1,10 @@
-.NavBar {
+.Navigation {
     background-color: tomato;
-    text-align: center;
+    text-align: left;
     font-weight: bold;
   }
   
-  .NavBar a {
+  .Navigation a {
     padding: 0.5em 0;
     width: 10em;
     display: inline-block;
@@ -12,12 +12,12 @@
     text-decoration: none;
   }
   
-  .NavBar a:hover {
+  .Navigation a:hover {
     background-color: black;
     color: white !important;
   }
   
-  .NavBar a.active {
+  .Navigation a.active {
     font-weight: bold;
     color: black;
   }

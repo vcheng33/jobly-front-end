@@ -14,6 +14,8 @@ import JobCardList from "./JobCardList";
  *      { handle, name, description, numEmployees, logoUrl, jobs:
  *          [{ id, title, salary, equity }, ...]
  *      }
+ *  - error 
+ *      only shows an error if the handle cannot be found
  * 
  *  Routes -> CompanyDetail -> JobCardList
  * 
@@ -21,22 +23,32 @@ import JobCardList from "./JobCardList";
 function CompanyDetail() {
     const { handle } = useParams();
     const [ company, setCompany ] = useState(null);
+    const [ error, setError] = useState(null);
+
+    // use this try catch pattern in other useEffects
 
     useEffect(function fetchCompanyOnLoad() {
         async function fetchCompany() {
-            const companyResult = await JoblyApi.getCompany(handle);
-            setCompany(companyResult);
+            try {
+                const companyResult = await JoblyApi.getCompany(handle);
+                setCompany(companyResult);
+            } catch (err) {
+                setError(err);
+            }
         }
         fetchCompany();
-    }, []);
-    // add handle inside array if it's needed
-    // thought handle was misleading in the array since it's not a state
+    }, [handle]);
 
-    if (company === null) {
+    if (company === null && error === null) {
         return <h2>Loading...</h2>
     }
+    // console.log(error);
 
-    console.log("Company Detail", {company});
+    if (error) {
+        return <h2>{error}</h2>
+    }
+
+    // console.log("Company Detail", {company});
     return (
         <div>
             <h2>{company.name}</h2>
