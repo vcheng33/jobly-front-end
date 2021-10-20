@@ -9,9 +9,8 @@
  *  JobCardList -> JobCard
 */
 
-// salary and equity formatted
-
 function JobCard({ id, title, salary, equity }) {
+    console.log("JobCard", {id, title, salary, equity})
     return (
         <div id={id}>
             <h2>{title}</h2>

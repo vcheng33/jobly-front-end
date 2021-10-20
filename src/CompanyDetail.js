@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+
 import JoblyApi from "./JoblyApi";
 import JobCardList from "./JobCardList";
 
@@ -25,8 +26,6 @@ function CompanyDetail() {
     const [ company, setCompany ] = useState(null);
     const [ error, setError] = useState(null);
 
-    // use this try catch pattern in other useEffects
-
     useEffect(function fetchCompanyOnLoad() {
         async function fetchCompany() {
             try {
@@ -42,13 +41,11 @@ function CompanyDetail() {
     if (company === null && error === null) {
         return <h2>Loading...</h2>
     }
-    // console.log(error);
 
     if (error) {
         return <h2>{error}</h2>
     }
 
-    // console.log("Company Detail", {company});
     return (
         <div>
             <h2>{company.name}</h2>
@@ -56,6 +53,5 @@ function CompanyDetail() {
             <JobCardList jobList={company.jobs}/>
         </div>
     )
-
 }
 export default CompanyDetail;

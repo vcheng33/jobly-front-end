@@ -14,7 +14,6 @@ import JobCard from "./JobCard";
  *      -> JobCard
  */
 
-// don't need div because you are allowed a list, but helpful for styling
 function JobCardList({ jobList }) {
     console.log("JobCardList", {jobList});
     return (
@@ -23,8 +22,11 @@ function JobCardList({ jobList }) {
             <JobCard 
                 key={j.id}
                 title={j.title}
-                salary={j.salary}
-                equity={j.equity}
+                salary={j.salary === null
+                    ? "Ask Company Representative"
+                    : `$${j.salary.toLocaleString()}`
+                }
+                equity={`${(Number(j.equity)*100).toFixed(2)}%`}
             />
         ))}
         </div>

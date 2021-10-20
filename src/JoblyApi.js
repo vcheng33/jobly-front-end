@@ -57,7 +57,10 @@ class JoblyApi {
     return res.companies;
   }
 
-  /** Get list of all jobs or jobs that meet search term criteria */
+  /** Get list of all jobs or jobs that meet search term criteria 
+   * 
+   *  searchTerm = {"title": "searchTerm"}
+  */
   static async getJobs(searchTerm) {
     const res = searchTerm.title !== ""
       ? await this.request(`jobs/`, searchTerm)

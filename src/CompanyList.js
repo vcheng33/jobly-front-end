@@ -1,8 +1,8 @@
-import JoblyApi from "./JoblyApi";
 import { useState, useEffect } from "react";
-import SearchForm from "./SearchForm";
 
+import JoblyApi from "./JoblyApi";
 import CompanyCard from "./CompanyCard";
+import SearchForm from "./SearchForm";
 
 /** Component for showing a list of all Companies
  *  in the database
@@ -21,7 +21,6 @@ import CompanyCard from "./CompanyCard";
  * 
  */
 function CompanyList() {
-    // useEffect on load
     const [companyList, setCompanyList] = useState(null);
     const [searchTerm, setSearchTerm] = useState("");
     const [error, setError] = useState(null);
