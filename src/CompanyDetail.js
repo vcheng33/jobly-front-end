@@ -30,6 +30,7 @@ function CompanyDetail() {
         fetchCompany();
     }, []);
     // add handle inside array if it's needed
+    // thought handle was misleading in the array since it's not a state
 
     if (company === null) {
         return <h2>Loading...</h2>
