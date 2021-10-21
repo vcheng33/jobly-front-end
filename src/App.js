@@ -57,8 +57,9 @@ function App() {
   }
 
   // Create a function logout a user
-  async function handleLogout(formData) {
-
+  async function handleLogout() {
+    setCurrentUser(null);
+    return<Redirect push to="/"/>
   }
 
   return (

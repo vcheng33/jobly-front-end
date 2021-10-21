@@ -14,7 +14,8 @@ import "./Navigation.css";
  * 
  */
 
-function Navigation() {
+function Navigation({handleLogout}) {
+
   return (
     <nav className="Navigation navbar navbar-dark bg-primary navbar-expand-md">
       <div className="container-fluid">
@@ -36,6 +37,11 @@ function Navigation() {
           <NavLink exact to="/profile" id="Navigation-link-profile">
             Profile
           </NavLink>
+        </li>
+        <li className="nav-item me-4" >
+          <button id="Navigation-link-logout" onClick={handleLogout} className="btn btn-link">
+            Logout
+          </button>
         </li>
         <li className="nav-item me-4" >
           <NavLink exact to="/login" id="Navigation-link-login">

@@ -14,7 +14,7 @@
     padding: 10%;
   }
 
-#Navigation-link-companies, #Navigation-link-jobs, #Navigation-link-profile, #Navigation-link-signup, #Navigation-link-login {
+#Navigation-link-companies, #Navigation-link-jobs, #Navigation-link-profile, #Navigation-link-signup, #Navigation-link-login, #Navigation-link-logout {
   text-decoration: none;
   color: white;
 }
