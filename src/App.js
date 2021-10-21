@@ -4,9 +4,8 @@ import Navigation from "./Navigation";
 import Routes from "./Routes";
 import "bootstrap/dist/css/bootstrap.css";
 import UserContext from './UserContext';
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 import JoblyApi from './JoblyApi';
-import Alert from "./Alert";
 
 import { decodeToken } from "react-jwt";
 
@@ -22,22 +21,24 @@ import { decodeToken } from "react-jwt";
  * 
  *  App -> { Navigation, Routes }
  */
+
 function App() {
-  console.log("App has rendered")
   const [currentUser, setCurrentUser] = useState(null);
   const [token, setToken] = useState(null);
-  // should the error be here?
   const [formSubmitted, setFormSubmitted] = useState(null);
-  console.log({currentUser, token})
+  console.log("App has rendered")
+  console.log({currentUser, token, formSubmitted})
 
   // add async function to get the user information
   useEffect(function updateCurrentUser() {
     async function getCurrentUser() {
-      const tokenUsername = decodeToken(token)
-      // setCurrentUser(tokenUsername);
-      const resUser = await JoblyApi.getUser(tokenUsername)
-      setCurrentUser(resUser);
-      console.log("useEffect has triggered");
+      if (token) {
+        const tokenUsername = decodeToken(token)
+        console.log("tokenUsername", tokenUsername);
+        const resUser = await JoblyApi.getUser(tokenUsername)
+        setCurrentUser(resUser);
+        console.log("useEffect has triggered");
+      }
     }
     getCurrentUser();
   }, [token])
@@ -59,11 +60,6 @@ function App() {
   async function handleLogout(formData) {
 
   }
-
-
-
-  // create an effect that is triggered when token is updated
-  // it will be an async function that updates currentUser
 
   return (
     < UserContext.Provider value={currentUser}>
