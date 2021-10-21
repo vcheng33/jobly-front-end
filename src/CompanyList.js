@@ -4,6 +4,8 @@ import JoblyApi from "./JoblyApi";
 import CompanyCard from "./CompanyCard";
 import SearchForm from "./SearchForm";
 
+import "./CompanyList.css";
+
 /** Component for showing a list of all Companies
  *  in the database
  * 
@@ -62,17 +64,19 @@ function CompanyList() {
     }
 
     return (
-        <div className="CompanyCard col-md-8 offset-md-2">
-            <SearchForm handleSearch={handleSearch} />
-            {companyList.map(c => (
-                <CompanyCard
-                    key={c.handle}
-                    handle={c.handle}
-                    name={c.name}
-                    description={c.description}
-                    logo={c.logoUrl}
-                />
-            ))}
+        <div className="CompanyList">
+            <div className="CompanyCard col-md-8 offset-md-2">
+                <SearchForm handleSearch={handleSearch} />
+                {companyList.map(c => (
+                    <CompanyCard
+                        key={c.handle}
+                        handle={c.handle}
+                        name={c.name}
+                        description={c.description}
+                        logo={c.logoUrl}
+                    />
+                ))}
+            </div>
         </div>
     )
 

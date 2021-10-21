@@ -16,7 +16,7 @@ function CompanyCard({ handle, name, description, logo }) {
     const linkURL = `/companies/${handle}`;
 
     return (
-        <div className="CompanyCard card mb-4">
+        <div className="CompanyCard card mb-3">
             <Link exact to={linkURL}
                 className="CompanyCard-card bg-white text-dark
                 text-decoration-none">
