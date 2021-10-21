@@ -6,8 +6,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import UserContext from './UserContext';
 import { useState, useEffect } from "react";
 import JoblyApi from './JoblyApi';
-
-import { decodeToken } from "react-jwt";
+import jwt from "jsonwebtoken";
 
 
 /** App for Jobly
@@ -33,9 +32,13 @@ function App() {
   useEffect(function updateCurrentUser() {
     async function getCurrentUser() {
       if (token) {
-        const tokenUsername = decodeToken(token)
-        console.log("tokenUsername", tokenUsername);
-        const resUser = await JoblyApi.getUser(tokenUsername)
+        console.log("token in App", {token});
+        JoblyApi.token = token;
+        const payload = jwt.decode(token);
+        // const tokenUsername = decodeToken(token)
+        // console.log("tokenUsername", tokenUsername);
+        const resUser = await JoblyApi.getUser(payload.username)
+        console.log({resUser});
         setCurrentUser(resUser);
         console.log("useEffect has triggered");
       }
@@ -46,6 +49,7 @@ function App() {
   // Create a function to login a user
   async function handleLogin(formData) {
       const resToken = await JoblyApi.login(formData);
+      console.log({resToken})
       setToken(resToken);
       setFormSubmitted(true);
   }
@@ -59,7 +63,7 @@ function App() {
   // Create a function logout a user
   async function handleLogout() {
     setCurrentUser(null);
-    return<Redirect push to="/"/>
+    return <Redirect push to="/"/>
   }
 
   return (
