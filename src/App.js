@@ -27,13 +27,16 @@ function App() {
   const [token, setToken] = useState(null);
   const [formSubmitted, setFormSubmitted] = useState(null);
   console.log("App has rendered", { currentUser, token, formSubmitted })
-
+  console.log(localStorage);
   useEffect(function updateCurrentUser() {
     async function getCurrentUser() {
-      if (token) {
-        console.log("token in App", { token });
-        JoblyApi.token = token;
-        const payload = jwt.decode(token);
+      const existingToken = token || localStorage.getItem("token");
+      console.log("existing token: ", existingToken);
+      if (existingToken) {
+        console.log("token in App", { existingToken });
+        JoblyApi.token = existingToken;
+        const payload = jwt.decode(existingToken);
+        console.log(payload);
         const resUser = await JoblyApi.getUser(payload.username);
         setCurrentUser(resUser);
       }
@@ -46,6 +49,8 @@ function App() {
     const resToken = await JoblyApi.login(formData);
     console.log({ resToken })
     setToken(resToken);
+    localStorage.setItem("token", resToken);
+    console.log(localStorage);
     setFormSubmitted(true);
     return <Redirect push to="/" />
   }
@@ -54,6 +59,7 @@ function App() {
   async function handleSignUp(formData) {
     const resToken = await JoblyApi.register(formData);
     setToken(resToken);
+    localStorage.setItem("token", resToken);
     setFormSubmitted(true);
     return <Redirect push to="/" />
   }
@@ -62,6 +68,7 @@ function App() {
   async function handleLogout() {
     setCurrentUser(null);
     setFormSubmitted(false);
+    localStorage.removeItem("token");
     return <Redirect push to="/" />
   }
 
