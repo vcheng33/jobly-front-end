@@ -22,9 +22,13 @@ function CompanyCard({ handle, name, description, logo }) {
                 text-decoration-none">
                 <h6 className="card-header text-uppercase">{name}</h6>
                 <div className="card-body">
-                    {logo !== null &&
-                        <img src={logo} alt="logo" class="col-1 float-start m-2"></img>}
-                    <div className="card-text ms-5 me-4">{description}</div>
+                    <div className="media">
+                        {logo !== null &&
+                            <img src={logo} alt="logo" class="col-1 float-start m-2"></img>}
+                        <div className="media-body">
+                            <div className="card-text ms-5 me-4">{description}</div>
+                        </div>
+                    </div>
                 </div>
             </Link>
         </div>

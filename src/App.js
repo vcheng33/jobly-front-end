@@ -8,6 +8,7 @@ import { useState, useEffect } from "react";
 import JoblyApi from './JoblyApi';
 import jwt from "jsonwebtoken";
 
+const TOKEN_KEYNAME = "token";
 
 /** App for Jobly
  * 
@@ -24,18 +25,17 @@ import jwt from "jsonwebtoken";
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
-  const [token, setToken] = useState(null);
+  const [token, setToken] = useState(localStorage.getItem(TOKEN_KEYNAME));
   const [formSubmitted, setFormSubmitted] = useState(null);
   console.log("App has rendered", { currentUser, token, formSubmitted })
-  console.log(localStorage);
+
   useEffect(function updateCurrentUser() {
     async function getCurrentUser() {
-      const existingToken = token || localStorage.getItem("token");
-      console.log("existing token: ", existingToken);
-      if (existingToken) {
-        console.log("token in App", { existingToken });
-        JoblyApi.token = existingToken;
-        const payload = jwt.decode(existingToken);
+      console.log("existing token: ", token);
+      if (token) {
+        console.log("token in App", { token });
+        JoblyApi.token = token;
+        const payload = jwt.decode(token);
         console.log(payload);
         const resUser = await JoblyApi.getUser(payload.username);
         setCurrentUser(resUser);
@@ -44,32 +44,38 @@ function App() {
     getCurrentUser();
   }, [token])
 
-  // A function to login a user
-  async function handleLogin(formData) {
-    const resToken = await JoblyApi.login(formData);
+  /** Logs in a user using login information {username, password}
+ *  Gets a token from the server 
+ *  Sets the token state, localStorage and formSubmitted
+ */
+  async function handleLogin({ username, password }) {
+    const resToken = await JoblyApi.login({ username, password });
     console.log({ resToken })
     setToken(resToken);
-    localStorage.setItem("token", resToken);
+    localStorage.setItem(TOKEN_KEYNAME, resToken);
     console.log(localStorage);
     setFormSubmitted(true);
-    return <Redirect push to="/" />
   }
 
-  // A function to signup a user
-  async function handleSignUp(formData) {
-    const resToken = await JoblyApi.register(formData);
+  /** Signs up a new user with data provided from SignUpForm
+   *  Gets a token from the server
+   *  Sets the token state, localStorage and formSubmitted
+   */
+  async function handleSignUp(newUserData) {
+    const resToken = await JoblyApi.register(newUserData);
     setToken(resToken);
-    localStorage.setItem("token", resToken);
+    localStorage.setItem(TOKEN_KEYNAME, resToken);
     setFormSubmitted(true);
-    return <Redirect push to="/" />
   }
 
-  // A function to logout a user
+  /** Logs out the current user 
+   *  Sets the currentUser to null, sets formSubmitted to false
+   *  Removes the token from localStorage
+  */
   async function handleLogout() {
     setCurrentUser(null);
     setFormSubmitted(false);
-    localStorage.removeItem("token");
-    return <Redirect push to="/" />
+    localStorage.removeItem(TOKEN_KEYNAME);
   }
 
   // A function to update user information
