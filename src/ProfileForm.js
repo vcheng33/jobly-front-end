@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./SignUpForm.css";
+import "./ProfileForm.css";
 
 /** Form for site signup.
  *
@@ -24,7 +24,7 @@ const INITIAL_STATE = {
 
 }
 
-function SearchForm({ initalFormData = INITIAL_STATE, handleSearch }) {
+function ProfileForm({ initalFormData = INITIAL_STATE, handleSearch }) {
     const [formData, setFormData] = useState(initalFormData);
 
     /** Update form input. */
@@ -44,7 +44,7 @@ function SearchForm({ initalFormData = INITIAL_STATE, handleSearch }) {
     }
 
     return (
-        <form className="SignUpForm m-3 mx-5" onSubmit={handleSubmit}>
+        <form className="ProfileForm m-3 mx-5" onSubmit={handleSubmit}>
 
             <div className="form-group col-md-4 offset-md-4 justify-content-evenly mt-5">
                 <label htmlFor="username">Username</label>
@@ -55,19 +55,7 @@ function SearchForm({ initalFormData = INITIAL_STATE, handleSearch }) {
                     onChange={handleChange}
                     value={formData.username}
                     aria-label="Enter Username"
-                    required
-                />
-
-                <label htmlFor="password">Password</label>
-                <input
-                    id="password"
-                    name="password"
-                    type="password"
-                    className="form-control"
-                    onChange={handleChange}
-                    value={formData.password}
-                    aria-label="Enter Password"
-                    required
+                    disabled
                 />
 
                 <label htmlFor="firstName">First Name</label>
@@ -103,14 +91,27 @@ function SearchForm({ initalFormData = INITIAL_STATE, handleSearch }) {
                     aria-label="Enter Email"
                     required
                 />
+
+                <label htmlFor="password">Confirm password to make changes:</label>
+                <input
+                    id="password"
+                    name="password"
+                    type="password"
+                    className="form-control"
+                    onChange={handleChange}
+                    value={formData.password}
+                    aria-label="Enter Password"
+                    required
+                />
+
             </div>
             <div className="row justify-content-evenly">
-                <button className="btn-primary btn btn-sm SignUpForm-submit-btn mt-2 mb-5 col-auto">
-                    Submit
-                </button>
+            <button className="btn-primary btn btn-sm ProfileForm-save-btn mt-2 mb-5 col-auto">
+                Save Changes
+            </button>
             </div>
         </form>
     );
 }
 
-export default SearchForm;
+export default ProfileForm;

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "./LoginForm.css";
 
 /** Form for site signup.
  *
@@ -39,9 +40,9 @@ function LoginForm({ initalFormData = INITIAL_STATE, handleSearch }) {
     }
 
     return (
-        <form className="LoginForm m-3 mx-5" onSubmit={handleSubmit}>
+        <form className="LoginForm row mt-3" onSubmit={handleSubmit}>
 
-            <div className="form-group row justify-content-evenly">
+            <div className="form-group col-md-4 offset-md-4 justify-content-evenly mt-5">
                 <label htmlFor="username">Username</label>
                 <input
                     id="username"
@@ -64,12 +65,12 @@ function LoginForm({ initalFormData = INITIAL_STATE, handleSearch }) {
                     aria-label="Enter Password"
                     required
                 />
+                <div className="row justify-content-evenly">
+                    <button className="btn-primary btn btn-sm Submit-Btn mt-2 mb-5 col-auto">
+                        Submit
+                    </button>
+                </div>
             </div>
-
-            <button className="btn-primary btn btn-sm Submit-Btn mt-2">
-                Submit
-            </button>
-
         </form>
     );
 }

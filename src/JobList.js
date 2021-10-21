@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-
 import JoblyApi from "./JoblyApi";
 import JobCardList from "./JobCardList";
 import SearchForm from "./SearchForm";
@@ -57,7 +56,7 @@ function JobList() {
     }
 
     return (
-        <div>
+        <div className="JobCardList col-md-8 offset-md-2">
             <SearchForm handleSearch={handleSearch} />
             <JobCardList jobList={jobList} />
         </div>

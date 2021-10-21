@@ -41,6 +41,7 @@ function SearchForm({ initalFormData = INITIAL_STATE, handleSearch }) {
     <form className="SearchForm m-3 mx-5" onSubmit={handleSubmit}>
 
       <div className="form-group row justify-content-evenly">
+        <div className="input-group">
         <input
           id="searchTerm"
           name="searchTerm"
@@ -50,12 +51,13 @@ function SearchForm({ initalFormData = INITIAL_STATE, handleSearch }) {
           value={formData.searchTerm}
           aria-label="Enter Search Term"
         />
+        <button className="btn-primary btn SearchForm-Btn ml-1 col-auto">
+          Search
+        </button>
+        </div>
       </div>
-
-      <button className="btn-primary btn btn-sm SearchForm-Btn mt-2">
-        Search
-      </button>
-
+      {/* <div className="row justify-content-center">
+      </div> */}
     </form>
   );
 }

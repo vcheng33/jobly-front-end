@@ -22,6 +22,7 @@ function JobCardList({ jobList }) {
             <JobCard 
                 key={j.id}
                 title={j.title}
+                company={j.companyName}
                 salary={j.salary === null
                     ? "Ask Company Representative"
                     : `$${j.salary.toLocaleString()}`

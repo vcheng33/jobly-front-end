@@ -1,8 +1,12 @@
 import { Route, Switch, Redirect } from "react-router-dom";
+
+import Homepage from "./Homepage";
 import CompanyList from "./CompanyList";
 import CompanyDetail from "./CompanyDetail";
 import JobList from "./JobList";
-import Homepage from "./Homepage";
+import LoginForm from "./LoginForm";
+import SignUpForm from "./SignUpForm";
+import ProfileForm from "./ProfileForm";
 
 /** Routes for App 
  * 
@@ -28,13 +32,13 @@ function Routes() {
             <JobList />
         </Route>
         <Route exact path="/login">
-            <Login />
+            <LoginForm />
         </Route>
         <Route exact path="/signup">
-            <SignUp />
+            <SignUpForm />
         </Route>
         <Route exact path="/profile">
-            <Profile />
+            <ProfileForm />
         </Route>
         <Route exact path="/">
             <Homepage />

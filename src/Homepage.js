@@ -1,4 +1,4 @@
-
+import "./Homepage.css";
 /** Component for homepage
  * 
  *  Props:
@@ -11,9 +11,9 @@
  */
 function Homepage() {
     return (
-        <div>
-            <h1>Jobly</h1>
-            <p>Find jobs in one convenient place.</p>
+        <div className="Homepage container text-center mt-5">
+            <h1 className="mb-4 fw-bold">Jobly</h1>
+            <p className="lead">Find jobs in one convenient place.</p>
         </div>
     )
 }

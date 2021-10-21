@@ -16,12 +16,16 @@ function CompanyCard({ handle, name, description, logo }) {
     const linkURL = `/companies/${handle}`;
 
     return (
-        <div className="CompanyCard card mx-5">
-            <Link exact to={linkURL} className="CompanyCard-card bg-white mb-3">
-                {logo !== null &&
-                    <img src={logo} alt="logo" class="CompanyCard-logo"></img>}
-                <h2 className="card-title">{name}</h2>
-                <p className="card-text">{description}</p>
+        <div className="CompanyCard card mb-4">
+            <Link exact to={linkURL}
+                className="CompanyCard-card bg-white text-dark
+                text-decoration-none">
+                <h6 className="card-header text-uppercase">{name}</h6>
+                <div className="card-body">
+                    {logo !== null &&
+                        <img src={logo} alt="logo" class="col-1 float-start m-2"></img>}
+                    <div className="card-text mx-5">{description}</div>
+                </div>
             </Link>
         </div>
     )

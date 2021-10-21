@@ -42,9 +42,9 @@ function Navigation() {
             Login
           </NavLink>
         </li>
-        <li className="nav-item me-4" >
+        <li className="nav-item me-4 text-nowrap" >
           <NavLink exact to="/signup" id="Navigation-link-signup">
-            SignUp
+            Sign Up
           </NavLink>
         </li>
       </ul>

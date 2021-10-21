@@ -9,14 +9,18 @@
  *  JobCardList -> JobCard
 */
 
-function JobCard({ id, title, salary, equity }) {
-    console.log("JobCard", {id, title, salary, equity})
+function JobCard({ id, title, company, salary, equity }) {
+    console.log("JobCard", { id, title, salary, equity })
     return (
-        <div id={id} className="JobCard card mx-5">
-            <h2>{title}</h2>
-            <p>Salary: {salary}</p>
-            <p>Equity: {equity}</p>
+        <div id={id} className="JobCard card mb-4">
+            <h6 className="card-header text-uppercase">{title}</h6>
+            <div className="card-body">
+                <p>{company}</p>
+                <div><small>Salary: {salary}</small></div>
+                <div><small>Equity: {equity}</small></div>
+            </div>
         </div>
     )
 }
+
 export default JobCard;

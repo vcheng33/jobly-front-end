@@ -60,7 +60,7 @@ function CompanyList() {
     }
 
     return (
-        <div className="CompanyCard">
+        <div className="CompanyCard col-md-8 offset-md-2">
             <SearchForm handleSearch={handleSearch}/>
             {companyList.map(c => (
                 <CompanyCard 
