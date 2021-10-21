@@ -17,8 +17,8 @@ class JoblyApi {
   // We're providing a token you can use to interact with the backend API
   // DON'T MODIFY THIS TOKEN
   // "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZ" +
-    // "SI6InRlc3R1c2VyIiwiaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTU5ODE1OTI1OX0." +
-    // "FtrMwBQwe6Ue-glIFgz_Nf8XxRT2YecFCiSpYL0fCXc"
+  // "SI6InRlc3R1c2VyIiwiaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTU5ODE1OTI1OX0." +
+  // "FtrMwBQwe6Ue-glIFgz_Nf8XxRT2YecFCiSpYL0fCXc"
   static token = "";
 
   static async request(endpoint, data = {}, method = "get") {
@@ -56,7 +56,7 @@ class JoblyApi {
     const res = searchTerm.name !== ""
       ? await this.request(`companies/`, searchTerm)
       : await this.request(`companies/`)
-    
+
     return res.companies;
   }
 
@@ -72,19 +72,34 @@ class JoblyApi {
     return res.jobs;
   }
 
-  /** Logs a user in  */
+  /** Logs an existing user in  
+   *  
+   *  formData = {username, password}
+   *  returns: "token"
+  */
   static async login(formData) {
     let res = await this.request('auth/token', formData, "post");
     console.log("login response: ", res);
     return res.token;
   }
 
+  /** Register a new user 
+   *  
+   *  formData = {username, firstName, lastName, email, password}
+   *  returns: "token"
+  */
   static async register(formData) {
     let res = await this.request('auth/register', formData, "post");
     console.log("register response: ", res);
     return res.token;
   }
 
+  /** Gets a user's information 
+   * 
+   *  returns: 
+   *  { username, firstName, lastName, isAdmin, jobs }
+   *  
+  */
   static async getUser(username) {
     let res = await this.request(`users/${username}`)
     console.log("getUser response", res);

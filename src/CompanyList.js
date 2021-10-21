@@ -27,7 +27,7 @@ function CompanyList() {
     const [companyList, setCompanyList] = useState(null);
     const [searchTerm, setSearchTerm] = useState("");
     const [error, setError] = useState(null);
-    
+
     // debugger;
     useEffect(function fetchCompanyListOnLoad() {
         async function fetchCompanyList() {

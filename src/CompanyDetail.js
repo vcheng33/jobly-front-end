@@ -23,8 +23,8 @@ import JobCardList from "./JobCardList";
  */
 function CompanyDetail() {
     const { handle } = useParams();
-    const [ company, setCompany ] = useState(null);
-    const [ error, setError] = useState(null);
+    const [company, setCompany] = useState(null);
+    const [error, setError] = useState(null);
 
     useEffect(function fetchCompanyOnLoad() {
         async function fetchCompany() {
@@ -47,10 +47,10 @@ function CompanyDetail() {
     }
 
     return (
-        <div>
-            <h2>{company.name}</h2>
+        <div className="CompanyDetail col-md-8 offset-md-2 text-center">
+            <h2 className="mt-3">{company.name}</h2>
             <p>{company.description}</p>
-            <JobCardList jobList={company.jobs}/>
+            <JobCardList jobList={company.jobs} />
         </div>
     )
 }

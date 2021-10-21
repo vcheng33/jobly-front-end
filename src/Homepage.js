@@ -18,7 +18,7 @@ function Homepage() {
         <div className="Homepage container text-center mt-5">
             <h1 className="mb-4 fw-bold">Jobly</h1>
             <p className="lead">Find jobs in one convenient place.</p>
-            {currentUser && 
+            {currentUser &&
                 <h2>Welcome {currentUser.firstName} {currentUser.lastName}!</h2>
             }
         </div>

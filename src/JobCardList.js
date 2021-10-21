@@ -15,21 +15,21 @@ import JobCard from "./JobCard";
  */
 
 function JobCardList({ jobList }) {
-    console.log("JobCardList", {jobList});
+    console.log("JobCardList", { jobList });
     return (
         <div>
-        {jobList.map(j => (
-            <JobCard 
-                key={j.id}
-                title={j.title}
-                company={j.companyName}
-                salary={j.salary === null
-                    ? "Ask Company Representative"
-                    : `$${j.salary.toLocaleString()}`
-                }
-                equity={`${(Number(j.equity)*100).toFixed(2)}%`}
-            />
-        ))}
+            {jobList.map(j => (
+                <JobCard
+                    key={j.id}
+                    title={j.title}
+                    company={j.companyName}
+                    salary={j.salary === null
+                        ? "Ask Company Representative"
+                        : `$${j.salary.toLocaleString()}`
+                    }
+                    equity={`${(Number(j.equity) * 100).toFixed(2)}%`}
+                />
+            ))}
         </div>
     )
 }
