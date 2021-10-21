@@ -80,6 +80,12 @@ class JoblyApi {
     console.log("register response: ", res);
     return res;
   }
+
+  static async getUser(username) {
+    let res = await this.request(`users/${username}`)
+    console.log("getUser response", res);
+    return res;
+  }
 }
 
 export default JoblyApi;

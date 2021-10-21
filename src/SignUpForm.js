@@ -1,20 +1,19 @@
 import React, { useState, useEffect } from "react";
-import { Redirect } from "react-router-dom";
 import "./SignUpForm.css";
+
 import Alert from "./Alert";
 
 /** Form for site signup.
  *
  * Props:
  * - initialFormData
- * - handleSearch: function to call in parent.
+ * - handleSignUp: function to call in parent.
  *
  * State:
  * - formData: {searchTerm}
+ * - error: [errorMessage if applicable]
  * 
- * This returns an HTML form for entering a search term.
- * 
- * { JobList, CompanyList } -> SearchForm
+ * Routes -> SignUpForm
  */
 
 const INITIAL_STATE = {
@@ -29,8 +28,8 @@ const INITIAL_STATE = {
 function SignUpForm({ initalFormData = INITIAL_STATE, handleSignUp }) {
     const [formData, setFormData] = useState(initalFormData);
     const [error, setError] = useState(null);
-    console.log("SignUpForm, ", {initalFormData, handleSignUp, error, formData });
-    
+    console.log("SignUpForm, ", { initalFormData, handleSignUp, error, formData });
+
     // if there's no current user, reset initialFormData to empty on initial render (create useEffect)
 
     /** Update form input. */
@@ -46,9 +45,9 @@ function SignUpForm({ initalFormData = INITIAL_STATE, handleSignUp }) {
     async function handleSubmit(evt) {
         evt.preventDefault();
         try {
-        console.log("Check out state ->", formData);
-        console.log("inside try of handleSubmit")
-        await handleSignUp(formData);
+            console.log("Check out state ->", formData);
+            console.log("inside try of handleSubmit")
+            await handleSignUp(formData);
         } catch (err) {
             console.log("error", err);
             setError(err);

@@ -32,17 +32,21 @@ function App() {
 
   // add async function to get the user information
   useEffect(function updateCurrentUser() {
-    console.log("useEffect has triggered");
-    const tokenUsername = decodeToken(token)
-    setCurrentUser(tokenUsername);
+    async function getCurrentUser() {
+      const tokenUsername = decodeToken(token)
+      // setCurrentUser(tokenUsername);
+      const resUser = await JoblyApi.getUser(tokenUsername)
+      setCurrentUser(resUser);
+      console.log("useEffect has triggered");
+    }
+    getCurrentUser();
   }, [token])
 
   // Create a function to login a user
   async function handleLogin(formData) {
-      console.log("in try of Login")
       const resToken = await JoblyApi.login(formData);
       setToken(resToken);
-      console.log("resToken", resToken);
+      setFormSubmitted(true);
   }
   // Create a function to signup a user
   async function handleSignUp(formData) {
@@ -56,10 +60,6 @@ function App() {
 
   }
 
-  // if (formSubmitted) {
-  //   debugger;
-    // return <Redirect push to="/companies"/>
-  // }
 
 
   // create an effect that is triggered when token is updated

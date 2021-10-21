@@ -1,20 +1,19 @@
 import React, { useState } from "react";
 import "./LoginForm.css";
-import { Redirect } from "react-router-dom";
+
 import Alert from "./Alert";
 
 /** Form for site signup.
  *
  * Props:
  * - initialFormData
- * - handleSearch: function to call in parent.
+ * - handlLogin: function to call in parent.
  *
  * State:
  * - formData: {searchTerm}
+ * - error: [errorMessage if applicable]
  * 
- * This returns an HTML form for entering a search term.
- * 
- * { JobList, CompanyList } -> SearchForm
+ * Routes -> SearchForm
  */
 
 const INITIAL_STATE = {
@@ -22,11 +21,10 @@ const INITIAL_STATE = {
     password: "",
 }
 
-function LoginForm({ initalFormData = INITIAL_STATE, handleLogin, error }) {
+function LoginForm({ initalFormData = INITIAL_STATE, handleLogin }) {
     const [formData, setFormData] = useState(initalFormData);
-    const [formSubmitted, setFormSubmitted] = useState(false);
-    console.log("LoginForm, ", { initalFormData, handleLogin, error, formData, formSubmitted });
-
+    const [error, setError] = useState(null);
+    console.log("LoginForm, ", { initalFormData, handleLogin, formData });
 
     // if current user is false, set formSubmitted to false
     // useEffect here on initial rendering
@@ -41,18 +39,16 @@ function LoginForm({ initalFormData = INITIAL_STATE, handleLogin, error }) {
     }
 
     /** Call parent function and clear form. */
-    function handleSubmit(evt) {
+    async function handleSubmit(evt) {
         evt.preventDefault();
-        console.log("Check out state ->", formData);
-        handleLogin(formData);
-        // setFormData(INITIAL_STATE);
-        setFormSubmitted(true);
-    }
-
-    console.log("before if statement", {formSubmitted, error})
-    if (formSubmitted && error === null) {
-        console.log("inside if statement");
-        return <Redirect push to="/" />
+        try {
+            console.log("Check out state ->", formData);
+            await handleLogin(formData);
+            // setFormData(INITIAL_STATE);
+        } catch (err) {
+            console.log({err});
+            setError(err);
+        }
     }
 
     return (
