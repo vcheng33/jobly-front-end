@@ -68,6 +68,12 @@ class JoblyApi {
 
     return res.jobs;
   }
+
+  static async login(formData) {
+    let res = await this.request('auth/token', formData, "post");
+    console.log("login response: ", res);
+    return res;
+  }
 }
 
 export default JoblyApi;
