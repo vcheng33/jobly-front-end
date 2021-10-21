@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./LoginForm.css";
+import { Redirect } from "react-router-dom";
 
 /** Form for site signup.
  *
@@ -20,8 +21,12 @@ const INITIAL_STATE = {
     password: "",
 }
 
-function LoginForm({ initalFormData = INITIAL_STATE, handleSearch }) {
+function LoginForm({ initalFormData = INITIAL_STATE, handleLogin }) {
     const [formData, setFormData] = useState(initalFormData);
+    const [formSubmitted, setFormSubmitted] = useState(false);
+
+    // if current user is false, set formSubmitted to false
+    // useEffect here on initial rendering
 
     /** Update form input. */
     function handleChange(evt) {
@@ -36,7 +41,13 @@ function LoginForm({ initalFormData = INITIAL_STATE, handleSearch }) {
     function handleSubmit(evt) {
         evt.preventDefault();
         console.log("Check out state ->", formData);
-        handleSearch(formData);
+        handleLogin(formData);
+        setFormData(INITIAL_STATE);
+        setFormSubmitted(true);
+    }
+
+    if (formSubmitted) {
+        return <Redirect push to="/" />
     }
 
     return (

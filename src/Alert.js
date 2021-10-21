@@ -10,8 +10,12 @@
  * 
  *  App -> { Navigation, Routes }
  */
-function Alert() {
-
+function Alert({ error }) {
+    return (
+        <div>
+            <h2 className="alert alert-danger text-center m-5">{error}</h2>
+        </div>
+    )
 }
 
 export default Alert;

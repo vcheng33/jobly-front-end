@@ -74,6 +74,12 @@ class JoblyApi {
     console.log("login response: ", res);
     return res;
   }
+
+  static async register(formData) {
+    let res = await this.request('auth/register', formData, "post");
+    console.log("register response: ", res);
+    return res;
+  }
 }
 
 export default JoblyApi;

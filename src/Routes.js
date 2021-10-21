@@ -11,7 +11,7 @@ import ProfileForm from "./ProfileForm";
 /** Routes for App 
  * 
  *  Props:
- *  - None
+ *  - handleLogin: function from parent
  * 
  *  State: 
  *  - None
@@ -19,7 +19,7 @@ import ProfileForm from "./ProfileForm";
  *  App -> Routes 
  *     -> { Homepage, CompanyList, CompanyDetail, JobList}
 */
-function Routes() {
+function Routes({ handleLogin, handleSignUp, error }) {
     return(
     <Switch>
         <Route exact path="/companies">
@@ -32,10 +32,10 @@ function Routes() {
             <JobList />
         </Route>
         <Route exact path="/login">
-            <LoginForm />
+            <LoginForm handleLogin={handleLogin} error={error}/>
         </Route>
         <Route exact path="/signup">
-            <SignUpForm />
+            <SignUpForm handleSignUp={handleSignUp} error={error}/>
         </Route>
         <Route exact path="/profile">
             <ProfileForm />
