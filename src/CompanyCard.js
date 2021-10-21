@@ -24,7 +24,7 @@ function CompanyCard({ handle, name, description, logo }) {
                 <div className="card-body">
                     {logo !== null &&
                         <img src={logo} alt="logo" class="col-1 float-start m-2"></img>}
-                    <div className="card-text mx-5">{description}</div>
+                    <div className="card-text ms-5 me-4">{description}</div>
                 </div>
             </Link>
         </div>

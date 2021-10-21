@@ -18,7 +18,7 @@ function Navigation() {
   return (
     <nav className="Navigation navbar navbar-dark bg-primary navbar-expand-md">
       <div className="container-fluid">
-      <NavLink exact to="/" className="navbar-brand">
+      <NavLink exact to="/" className="navbar-brand ms-3">
         Jobly
       </NavLink>
       <ul className="navbar-nav ms-auto">

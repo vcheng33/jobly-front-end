@@ -28,16 +28,16 @@ function CompanyList() {
     useEffect(function fetchCompanyListOnLoad() {
         async function fetchCompanyList() {
             try {
-                const companiesResult = await JoblyApi.getCompanies({"name": searchTerm});
+                const companiesResult = await JoblyApi.getCompanies({ "name": searchTerm });
                 setCompanyList(companiesResult);
-            } catch  (err) {
+            } catch (err) {
                 setError(err);
             }
         }
         fetchCompanyList();
     }, [searchTerm]);
 
-    
+
     function handleSearch(formData) {
         setSearchTerm(formData.searchTerm);
     }
@@ -49,8 +49,10 @@ function CompanyList() {
     if (companyList.length === 0) {
         return (
             <div>
-                <SearchForm handleSearch={handleSearch}/>
-                <h2>No Results Found</h2>
+                <div className="CompanyCard col-md-8 offset-md-2 text-center">
+                    <SearchForm handleSearch={handleSearch} />
+                    <h2>No Results Found</h2>
+                </div>
             </div>
         )
     }
@@ -61,10 +63,10 @@ function CompanyList() {
 
     return (
         <div className="CompanyCard col-md-8 offset-md-2">
-            <SearchForm handleSearch={handleSearch}/>
+            <SearchForm handleSearch={handleSearch} />
             {companyList.map(c => (
-                <CompanyCard 
-                    key={c.handle} 
+                <CompanyCard
+                    key={c.handle}
                     handle={c.handle}
                     name={c.name}
                     description={c.description}

@@ -3,13 +3,14 @@
     font-weight: bold;
   }
   
-  .Navigation a:hover {
-    background-color: rgb(0, 38, 109);
-  } */
+  .nav-item a:hover {
+    background-color: #4991FD;
+    padding: 10%;
+  } 
   
   .nav-item a.active {
     font-weight: bold;
-    background-color: navy;
+    background-color: #4991FD;
     padding: 10%;
   }
 

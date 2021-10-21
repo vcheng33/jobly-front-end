@@ -20,7 +20,7 @@ import SearchForm from "./SearchForm";
 function JobList() {
     const [jobList, setJobList] = useState(null);
     const [searchTerm, setSearchTerm] = useState("");
-    const [ error, setError] = useState(null);
+    const [error, setError] = useState(null);
 
     useEffect(function fetchJobListOnLoad() {
         async function fetchJobList() {
@@ -45,8 +45,10 @@ function JobList() {
     if (jobList.length === 0) {
         return (
             <div>
-                <SearchForm handleSearch={handleSearch}/>
-                <h2>No Results Found</h2>
+                <div className="JobCardList col-md-8 offset-md-2 text-center">
+                    <SearchForm handleSearch={handleSearch} />
+                    <h2>No Results Found</h2>
+                </div>
             </div>
         )
     }
