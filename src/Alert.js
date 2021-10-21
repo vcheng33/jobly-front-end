@@ -2,13 +2,12 @@
  * to profile and signup forms
  * 
  *  Props:
- *  - None
+ *  - error (an error message)
  * 
  *  State:
- *  - token
- *  - currentUser
+ *  - None
  * 
- *  App -> { Navigation, Routes }
+ *  { LoginForm, SignUpForm, ProfileForm } -> Alert
  */
 function Alert({ error }) {
     return (

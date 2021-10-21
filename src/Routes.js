@@ -11,13 +11,21 @@ import ProfileForm from "./ProfileForm";
 /** Routes for App 
  * 
  *  Props:
- *  - handleLogin: function from parent
+ *  - handleLogin: function to be called in parent
+ *  - handleSignUp: function to be called in parent
  * 
  *  State: 
  *  - None
  * 
  *  App -> Routes 
- *     -> { Homepage, CompanyList, CompanyDetail, JobList}
+ *     -> { Homepage, 
+ *          CompanyList, 
+ *          CompanyDetail, 
+ *          JobList,
+ *          LoginForm,
+ *          SignUpForm,
+ *          ProfileForm,
+ *          }
 */
 function Routes({ handleLogin, handleSignUp }) {
     return(

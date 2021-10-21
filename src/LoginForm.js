@@ -3,17 +3,17 @@ import "./LoginForm.css";
 
 import Alert from "./Alert";
 
-/** Form for site signup.
+/** Form for logging into the site.
  *
  * Props:
  * - initialFormData
- * - handlLogin: function to call in parent.
+ * - handleLogin: function to call in parent.
  *
  * State:
- * - formData: {searchTerm}
+ * - formData: {username, password}
  * - error: [errorMessage if applicable]
  * 
- * Routes -> SearchForm
+ * Routes -> LoginForm -> Alert
  */
 
 const INITIAL_STATE = {

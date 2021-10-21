@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./SignUpForm.css";
 
 import Alert from "./Alert";
@@ -10,10 +10,10 @@ import Alert from "./Alert";
  * - handleSignUp: function to call in parent.
  *
  * State:
- * - formData: {searchTerm}
+ * - formData: {username, firstName, lastName, email, password}
  * - error: [errorMessage if applicable]
  * 
- * Routes -> SignUpForm
+ * Routes -> SignUpForm -> Alert
  */
 
 const INITIAL_STATE = {
@@ -22,15 +22,12 @@ const INITIAL_STATE = {
     firstName: "",
     lastName: "",
     email: "",
-
 }
 
 function SignUpForm({ initalFormData = INITIAL_STATE, handleSignUp }) {
     const [formData, setFormData] = useState(initalFormData);
     const [error, setError] = useState(null);
     console.log("SignUpForm, ", { initalFormData, handleSignUp, error, formData });
-
-    // if there's no current user, reset initialFormData to empty on initial render (create useEffect)
 
     /** Update form input. */
     function handleChange(evt) {
@@ -46,10 +43,8 @@ function SignUpForm({ initalFormData = INITIAL_STATE, handleSignUp }) {
         evt.preventDefault();
         try {
             console.log("Check out state ->", formData);
-            console.log("inside try of handleSubmit")
             await handleSignUp(formData);
         } catch (err) {
-            console.log("error", err);
             setError(err);
         }
     }

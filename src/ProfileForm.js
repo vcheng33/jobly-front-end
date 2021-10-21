@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import "./ProfileForm.css";
+import UserContext from "./UserContext";
 
 /** Form for site signup.
  *
@@ -8,25 +9,30 @@ import "./ProfileForm.css";
  * - handleSearch: function to call in parent.
  *
  * State:
- * - formData: {searchTerm}
+ * - formData: {
+ *      username (cannot be updated), 
+ *      password (for validation), 
+ *      firstName, 
+ *      lastName, 
+ *      email}
  * 
- * This returns an HTML form for entering a search term.
+ * This returns an HTML form for updating Profile
  * 
- * { JobList, CompanyList } -> SearchForm
+ * Routes -> ProfileForm -> Alert
  */
 
-const INITIAL_STATE = {
-    username: "",
-    password: "",
-    firstName: "",
-    lastName: "",
-    email: "",
 
-}
-
-function ProfileForm({ initalFormData = INITIAL_STATE, handleSearch }) {
-    const [formData, setFormData] = useState(initalFormData);
-
+function ProfileForm({ handleSearch }) {
+    const user = useContext(UserContext);
+    const userData = {
+        username: user.username,
+        password: "",
+        firstName: user.firstName,
+        lastName: user.lastName,
+        email: user.email,
+    }
+    const [formData, setFormData] = useState(userData);
+    
     /** Update form input. */
     function handleChange(evt) {
         const { name, value } = evt.target;
