@@ -1,5 +1,5 @@
 import './App.css';
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, Redirect } from "react-router-dom";
 import Navigation from "./Navigation";
 import Routes from "./Routes";
 import "bootstrap/dist/css/bootstrap.css";
@@ -27,8 +27,10 @@ function App() {
   const [currentUser, setCurrentUser] = useState(null);
   const [token, setToken] = useState(null);
   // should the error be here?
-  const [error, setError] = useState(null);
+  const [formSubmitted, setFormSubmitted] = useState(null);
+  console.log({currentUser, token})
 
+  // add async function to get the user information
   useEffect(function updateCurrentUser() {
     console.log("useEffect has triggered");
     const tokenUsername = decodeToken(token)
@@ -37,31 +39,27 @@ function App() {
 
   // Create a function to login a user
   async function handleLogin(formData) {
-    try {
+      console.log("in try of Login")
       const resToken = await JoblyApi.login(formData);
       setToken(resToken);
-    } catch (err) {
-      setError(err);
-    }
+      console.log("resToken", resToken);
   }
   // Create a function to signup a user
   async function handleSignUp(formData) {
-    try {
-      console.log("in try of handleSignUp")
       const resToken = await JoblyApi.register(formData);
       setToken(resToken);
-      console.log("resToken", resToken);
-    } catch (err) {
-      console.log("in catch of handleSignUp")
-      console.log("error", err);
-      setError(err);
-    }
+      setFormSubmitted(true);
   }
 
   // Create a function logout a user
   async function handleLogout(formData) {
 
   }
+
+  // if (formSubmitted) {
+  //   debugger;
+    // return <Redirect push to="/companies"/>
+  // }
 
 
   // create an effect that is triggered when token is updated
@@ -70,18 +68,14 @@ function App() {
   return (
     < UserContext.Provider value={currentUser}>
       <div className="App">
-        <BrowserRouter>
           <Navigation
             handleLogout={handleLogout}
           />
           <Routes
             handleLogin={handleLogin}
             handleSignUp={handleSignUp}
-            error={error}
           />
-        </BrowserRouter>
-        {/* {error && 
-          <Alert error={error} />} */}
+      {formSubmitted && <Redirect push to="/"/>}
       </div>
     </UserContext.Provider>
   );

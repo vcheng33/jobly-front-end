@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./LoginForm.css";
 import { Redirect } from "react-router-dom";
+import Alert from "./Alert";
 
 /** Form for site signup.
  *
@@ -21,9 +22,11 @@ const INITIAL_STATE = {
     password: "",
 }
 
-function LoginForm({ initalFormData = INITIAL_STATE, handleLogin }) {
+function LoginForm({ initalFormData = INITIAL_STATE, handleLogin, error }) {
     const [formData, setFormData] = useState(initalFormData);
     const [formSubmitted, setFormSubmitted] = useState(false);
+    console.log("LoginForm, ", { initalFormData, handleLogin, error, formData, formSubmitted });
+
 
     // if current user is false, set formSubmitted to false
     // useEffect here on initial rendering
@@ -42,47 +45,52 @@ function LoginForm({ initalFormData = INITIAL_STATE, handleLogin }) {
         evt.preventDefault();
         console.log("Check out state ->", formData);
         handleLogin(formData);
-        setFormData(INITIAL_STATE);
+        // setFormData(INITIAL_STATE);
         setFormSubmitted(true);
     }
 
-    if (formSubmitted) {
+    console.log("before if statement", {formSubmitted, error})
+    if (formSubmitted && error === null) {
+        console.log("inside if statement");
         return <Redirect push to="/" />
     }
 
     return (
-        <form className="LoginForm row mt-3" onSubmit={handleSubmit}>
+        <div>
+            {error && <Alert error={error} />}
+            <form className="LoginForm row mt-3" onSubmit={handleSubmit}>
 
-            <div className="form-group col-md-4 offset-md-4 justify-content-evenly mt-5">
-                <label htmlFor="username">Username</label>
-                <input
-                    id="username"
-                    name="username"
-                    className="form-control"
-                    onChange={handleChange}
-                    value={formData.username}
-                    aria-label="Enter Username"
-                    required
-                />
+                <div className="form-group col-md-4 offset-md-4 justify-content-evenly mt-5">
+                    <label htmlFor="username">Username</label>
+                    <input
+                        id="username"
+                        name="username"
+                        className="form-control"
+                        onChange={handleChange}
+                        value={formData.username}
+                        aria-label="Enter Username"
+                        required
+                    />
 
-                <label htmlFor="password">Password</label>
-                <input
-                    id="password"
-                    name="password"
-                    type="password"
-                    className="form-control"
-                    onChange={handleChange}
-                    value={formData.password}
-                    aria-label="Enter Password"
-                    required
-                />
-                <div className="row justify-content-evenly">
-                    <button className="btn-primary btn btn-sm Submit-Btn mt-2 mb-5 col-auto">
-                        Submit
-                    </button>
+                    <label htmlFor="password">Password</label>
+                    <input
+                        id="password"
+                        name="password"
+                        type="password"
+                        className="form-control"
+                        onChange={handleChange}
+                        value={formData.password}
+                        aria-label="Enter Password"
+                        required
+                    />
+                    <div className="row justify-content-evenly">
+                        <button className="btn-primary btn btn-sm Submit-Btn mt-2 mb-5 col-auto">
+                            Submit
+                        </button>
+                    </div>
                 </div>
-            </div>
-        </form>
+            </form>
+        </div>
     );
 }
 

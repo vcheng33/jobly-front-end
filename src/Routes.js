@@ -19,7 +19,7 @@ import ProfileForm from "./ProfileForm";
  *  App -> Routes 
  *     -> { Homepage, CompanyList, CompanyDetail, JobList}
 */
-function Routes({ handleLogin, handleSignUp, error }) {
+function Routes({ handleLogin, handleSignUp }) {
     return(
     <Switch>
         <Route exact path="/companies">
@@ -32,10 +32,10 @@ function Routes({ handleLogin, handleSignUp, error }) {
             <JobList />
         </Route>
         <Route exact path="/login">
-            <LoginForm handleLogin={handleLogin} error={error}/>
+            <LoginForm handleLogin={handleLogin}/>
         </Route>
         <Route exact path="/signup">
-            <SignUpForm handleSignUp={handleSignUp} error={error}/>
+            <SignUpForm handleSignUp={handleSignUp}/>
         </Route>
         <Route exact path="/profile">
             <ProfileForm />

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Redirect } from "react-router-dom";
 import "./SignUpForm.css";
 import Alert from "./Alert";
@@ -26,10 +26,10 @@ const INITIAL_STATE = {
 
 }
 
-function SignUpForm({ initalFormData = INITIAL_STATE, handleSignUp, error }) {
+function SignUpForm({ initalFormData = INITIAL_STATE, handleSignUp }) {
     const [formData, setFormData] = useState(initalFormData);
-    const [formSubmitted, setFormSubmitted] = useState(false);
-    console.log("SignUpForm, ", {initalFormData, handleSignUp, error, formData, formSubmitted});
+    const [error, setError] = useState(null);
+    console.log("SignUpForm, ", {initalFormData, handleSignUp, error, formData });
     
     // if there's no current user, reset initialFormData to empty on initial render (create useEffect)
 
@@ -43,16 +43,16 @@ function SignUpForm({ initalFormData = INITIAL_STATE, handleSignUp, error }) {
     }
 
     /** Call parent function and clear form. */
-    function handleSubmit(evt) {
+    async function handleSubmit(evt) {
         evt.preventDefault();
+        try {
         console.log("Check out state ->", formData);
         console.log("inside try of handleSubmit")
-        handleSignUp(formData);
-        setFormSubmitted(true);
-    }
-
-    if (formSubmitted && error === null) {
-        return <Redirect push to="/"/>
+        await handleSignUp(formData);
+        } catch (err) {
+            console.log("error", err);
+            setError(err);
+        }
     }
 
     return (
