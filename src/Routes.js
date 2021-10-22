@@ -30,33 +30,46 @@ import ProfileForm from "./ProfileForm";
  *          }
 */
 function Routes({ handleLogin, handleSignUp }) {
-    return(
-    <Switch>
+    const user = useContext(UserContext);
+    return (
         <div>
-        <Route exact path="/companies">
-            <CompanyList />
-        </Route>
-        <Route exact path="/companies/:handle">
-            <CompanyDetail />
-        </Route>
-        <Route exact path="/jobs">
-            <JobList />
-        </Route>
-        <Route exact path="/profile">
-            <ProfileForm />
-        </Route>
+            <Switch>
+                {user &&
+                    <Route exact path="/companies">
+                        <CompanyList />
+                    </Route>
+                }
+                {user &&
+                    <Route exact path="/companies/:handle">
+                        <CompanyDetail />
+                    </Route>
+                }
+                {user &&
+                    <Route exact path="/jobs">
+                        <JobList />
+                    </Route>
+                }
+                {user &&
+                    <Route exact path="/profile">
+                        <ProfileForm />
+                    </Route>
+                }
+                {!user &&
+                    <Route exact path="/login">
+                        <LoginForm handleLogin={handleLogin} />
+                    </Route>
+                }
+                {!user &&
+                    <Route exact path="/signup">
+                        <SignUpForm handleSignUp={handleSignUp} />
+                    </Route>
+                }
+                <Route exact path="/">
+                    <Homepage />
+                </Route>
+                <Redirect to="/" />
+            </Switch>
         </div>
-        <Route exact path="/login">
-            <LoginForm handleLogin={handleLogin}/>
-        </Route>
-        <Route exact path="/signup">
-            <SignUpForm handleSignUp={handleSignUp}/>
-        </Route>
-        <Route exact path="/">
-            <Homepage />
-        </Route>
-        <Redirect to="/" />
-    </Switch>
     )
 }
 export default Routes;
