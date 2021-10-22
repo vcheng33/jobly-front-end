@@ -1,4 +1,6 @@
 import { Route, Switch, Redirect } from "react-router-dom";
+import { useContext } from "react";
+import UserContext from "./UserContext";
 
 import Homepage from "./Homepage";
 import CompanyList from "./CompanyList";
@@ -30,6 +32,7 @@ import ProfileForm from "./ProfileForm";
 function Routes({ handleLogin, handleSignUp }) {
     return(
     <Switch>
+        <div>
         <Route exact path="/companies">
             <CompanyList />
         </Route>
@@ -39,14 +42,15 @@ function Routes({ handleLogin, handleSignUp }) {
         <Route exact path="/jobs">
             <JobList />
         </Route>
+        <Route exact path="/profile">
+            <ProfileForm />
+        </Route>
+        </div>
         <Route exact path="/login">
             <LoginForm handleLogin={handleLogin}/>
         </Route>
         <Route exact path="/signup">
             <SignUpForm handleSignUp={handleSignUp}/>
-        </Route>
-        <Route exact path="/profile">
-            <ProfileForm />
         </Route>
         <Route exact path="/">
             <Homepage />
