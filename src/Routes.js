@@ -1,6 +1,4 @@
 import { Route, Switch, Redirect } from "react-router-dom";
-import { useContext } from "react";
-import UserContext from "./UserContext";
 
 import Homepage from "./Homepage";
 import CompanyList from "./CompanyList";
@@ -9,6 +7,7 @@ import JobList from "./JobList";
 import LoginForm from "./LoginForm";
 import SignUpForm from "./SignUpForm";
 import ProfileForm from "./ProfileForm";
+import ProtectedRoute from "./ProtectedRoutes";
 
 /** Routes for App 
  * 
@@ -30,46 +29,31 @@ import ProfileForm from "./ProfileForm";
  *          }
 */
 function Routes({ handleLogin, handleSignUp }) {
-    const user = useContext(UserContext);
     return (
-        <div>
-            <Switch>
-                {user &&
-                    <Route exact path="/companies">
-                        <CompanyList />
-                    </Route>
-                }
-                {user &&
-                    <Route exact path="/companies/:handle">
-                        <CompanyDetail />
-                    </Route>
-                }
-                {user &&
-                    <Route exact path="/jobs">
-                        <JobList />
-                    </Route>
-                }
-                {user &&
-                    <Route exact path="/profile">
-                        <ProfileForm />
-                    </Route>
-                }
-                {!user &&
-                    <Route exact path="/login">
-                        <LoginForm handleLogin={handleLogin} />
-                    </Route>
-                }
-                {!user &&
-                    <Route exact path="/signup">
-                        <SignUpForm handleSignUp={handleSignUp} />
-                    </Route>
-                }
-                <Route exact path="/">
-                    <Homepage />
-                </Route>
-                <Redirect to="/" />
-            </Switch>
-        </div>
+        <Switch>
+            <ProtectedRoute exact path="/companies">
+                <CompanyList />
+            </ProtectedRoute>
+            <ProtectedRoute exact path="/companies/:handle">
+                <CompanyDetail />
+            </ProtectedRoute>
+            <ProtectedRoute exact path="/jobs">
+                <JobList />
+            </ProtectedRoute>
+            <ProtectedRoute exact path="/profile">
+                <ProfileForm />
+            </ProtectedRoute>
+            <Route exact path="/login">
+                <LoginForm handleLogin={handleLogin} />
+            </Route>
+            <Route exact path="/signup">
+                <SignUpForm handleSignUp={handleSignUp} />
+            </Route>
+            <Route exact path="/">
+                <Homepage />
+            </Route>
+            <Redirect to="/" />
+        </Switch>
     )
 }
 export default Routes;
