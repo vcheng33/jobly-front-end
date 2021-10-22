@@ -3,7 +3,7 @@ import "./SignUpForm.css";
 
 import Alert from "./Alert";
 
-/** Form for site signup.
+/** Form for signing up a new user.
  *
  * Props:
  * - initialFormData
@@ -42,7 +42,6 @@ function SignUpForm({ initalFormData = INITIAL_STATE, handleSignUp }) {
     async function handleSubmit(evt) {
         evt.preventDefault();
         try {
-            console.log("Check out state ->", formData);
             await handleSignUp(formData);
         } catch (err) {
             setError(err);

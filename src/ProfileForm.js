@@ -4,13 +4,14 @@ import UserContext from "./UserContext";
 import Alert from "./Alert";
 import Success from "./Success";
 
-/** Form for site signup.
+/** Form for updating a user's profile.
  *
  * Props:
  * - initialFormData
  * - handleProfileUpdate: function to call in parent.
  *
  * State:
+ * - success: true/false
  * - error: [errorMessage if applicable]
  * - formData: {
  *      username (cannot be updated), 
@@ -18,8 +19,6 @@ import Success from "./Success";
  *      firstName, 
  *      lastName, 
  *      email}
- * 
- * This returns an HTML form for updating Profile
  * 
  * ProtectedRoutes -> ProfileForm -> Alert
  */
@@ -51,11 +50,9 @@ function ProfileForm({ handleProfileUpdate }) {
     async function handleSubmit(evt) {
         evt.preventDefault();
         try {
-            console.log("Check out state ->", formData);
             await handleProfileUpdate(formData);
             setSuccess(true);
         } catch (err) {
-            console.log({err});
             setError(err)
         }
     }

@@ -3,6 +3,8 @@ import { useParams } from "react-router-dom";
 
 import JoblyApi from "./JoblyApi";
 import JobCardList from "./JobCardList";
+import Loading from "./Loading";
+
 
 /** Component for a single company that shows details
  *  about that company
@@ -18,7 +20,7 @@ import JobCardList from "./JobCardList";
  *  - error 
  *      [errorMessage if applicable]
  * 
- *  ProtectedRoutes -> CompanyDetail -> JobCardList
+ *  ProtectedRoutes -> CompanyDetail -> { JobCardList, Loading }
  * 
  */
 function CompanyDetail() {
@@ -39,7 +41,7 @@ function CompanyDetail() {
     }, [handle]);
 
     if (company === null && error === null) {
-        return <h2>Loading...</h2>
+        return <Loading />
     }
 
     if (error) {

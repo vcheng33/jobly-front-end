@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
+
 import JoblyApi from "./JoblyApi";
 import JobCardList from "./JobCardList";
 import SearchForm from "./SearchForm";
+import Loading from "./Loading";
 
 /** Component that gets a list of all jobs
  * 
@@ -16,7 +18,7 @@ import SearchForm from "./SearchForm";
  *  - searchTerm from searchForm
  *  - error: [errorMessage if applicable]
  * 
- *  Routes -> JobList -> { SearchForm, JobCardList }
+ *  Routes -> JobList -> { SearchForm, JobCardList, Loading }
  */
 function JobList() {
     const [jobList, setJobList] = useState(null);
@@ -40,7 +42,7 @@ function JobList() {
     }
 
     if (jobList === null && error === null) {
-        return <h2>Loading...</h2>
+        return <Loading />
     }
 
     if (jobList.length === 0) {

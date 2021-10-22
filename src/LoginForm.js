@@ -39,10 +39,8 @@ function LoginForm({ initalFormData = INITIAL_STATE, handleLogin }) {
     async function handleSubmit(evt) {
         evt.preventDefault();
         try {
-            console.log("Check out state ->", formData);
             await handleLogin(formData);
         } catch (err) {
-            console.log({err});
             setError(err);
         }
     }
