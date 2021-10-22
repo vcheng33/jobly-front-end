@@ -28,7 +28,7 @@ import ProtectedRoute from "./ProtectedRoutes";
  *          ProfileForm,
  *          }
 */
-function Routes({ handleLogin, handleSignUp }) {
+function Routes({ handleLogin, handleSignUp, handleProfileUpdate }) {
     return (
         <Switch>
             <ProtectedRoute exact path="/companies">
@@ -41,7 +41,7 @@ function Routes({ handleLogin, handleSignUp }) {
                 <JobList />
             </ProtectedRoute>
             <ProtectedRoute exact path="/profile">
-                <ProfileForm />
+                <ProfileForm handleProfileUpdate={handleProfileUpdate}/>
             </ProtectedRoute>
             <Route exact path="/login">
                 <LoginForm handleLogin={handleLogin} />

@@ -79,7 +79,17 @@ function App() {
     localStorage.removeItem(TOKEN_KEYNAME);
   }
 
-  // A function to update user information
+  /** Updates up a user with data provided from ProfileForm
+ *  (includes firstName, lastName, email but requires username and password)
+ */
+  async function handleProfileUpdate(formData) {
+    const updateUserData = {"firstName": formData.firstName, "lastName": formData.lastName, "email": formData.email};
+    const resUser = await JoblyApi.updateUser(formData.username, updateUserData);
+    console.log(resUser);
+    setCurrentUser(curr => ({...curr, ...resUser}));
+    // console.log("current user:  ", currentUser);
+    setFormSubmitted(true);
+  }
 
   return (
     < UserContext.Provider value={currentUser}>
@@ -90,6 +100,7 @@ function App() {
         <Routes
           handleLogin={handleLogin}
           handleSignUp={handleSignUp}
+          handleProfileUpdate={handleProfileUpdate}
         />
         {formSubmitted && <Redirect push to="/" />}
       </div>
