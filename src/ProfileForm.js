@@ -2,14 +2,16 @@ import React, { useState, useContext } from "react";
 import "./ProfileForm.css";
 import UserContext from "./UserContext";
 import Alert from "./Alert";
+import Success from "./Success";
 
 /** Form for site signup.
  *
  * Props:
  * - initialFormData
- * - handleSearch: function to call in parent.
+ * - handleProfileUpdate: function to call in parent.
  *
  * State:
+ * - error: [errorMessage if applicable]
  * - formData: {
  *      username (cannot be updated), 
  *      password (for validation), 
@@ -19,7 +21,7 @@ import Alert from "./Alert";
  * 
  * This returns an HTML form for updating Profile
  * 
- * Routes -> ProfileForm -> Alert
+ * ProtectedRoutes -> ProfileForm -> Alert
  */
 
 
@@ -34,6 +36,7 @@ function ProfileForm({ handleProfileUpdate }) {
     }
     const [formData, setFormData] = useState(userData);
     const [error, setError] = useState(null);
+    const [success, setSuccess] = useState(null);
 
     /** Update form input. */
     function handleChange(evt) {
@@ -50,6 +53,7 @@ function ProfileForm({ handleProfileUpdate }) {
         try {
             console.log("Check out state ->", formData);
             await handleProfileUpdate(formData);
+            setSuccess(true);
         } catch (err) {
             console.log({err});
             setError(err)
@@ -59,6 +63,7 @@ function ProfileForm({ handleProfileUpdate }) {
     return (
         <div>
             {error && <Alert error={error} />}
+            {success && <Success msg="User successfully updated" />}
             <form className="ProfileForm m-3 mx-5" onSubmit={handleSubmit}>
 
                 <div className="form-group col-md-4 offset-md-4 justify-content-evenly mt-5">

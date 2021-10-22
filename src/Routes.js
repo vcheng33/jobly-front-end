@@ -7,26 +7,21 @@ import JobList from "./JobList";
 import LoginForm from "./LoginForm";
 import SignUpForm from "./SignUpForm";
 import ProfileForm from "./ProfileForm";
-import ProtectedRoute from "./ProtectedRoutes";
+import ProtectedRoute from "./ProtectedRoute";
 
 /** Routes for App 
  * 
  *  Props:
  *  - handleLogin: function to be called in parent
  *  - handleSignUp: function to be called in parent
+ *  - handleProfileUpdate: function to be called in parent
  * 
  *  State: 
  *  - None
  * 
- *  App -> Routes 
- *     -> { Homepage, 
- *          CompanyList, 
- *          CompanyDetail, 
- *          JobList,
- *          LoginForm,
- *          SignUpForm,
- *          ProfileForm,
- *          }
+ *  App -> Routes  
+ *      -> ProtectedRoute -> { CompanyList, CompanyDetail, JobList, ProfileForm } 
+ *      -> { Homepage, LoginForm, SignUpForm }
 */
 function Routes({ handleLogin, handleSignUp, handleProfileUpdate }) {
     return (

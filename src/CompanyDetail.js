@@ -16,9 +16,9 @@ import JobCardList from "./JobCardList";
  *          [{ id, title, salary, equity }, ...]
  *      }
  *  - error 
- *      only shows an error if the handle cannot be found
+ *      [errorMessage if applicable]
  * 
- *  Routes -> CompanyDetail -> JobCardList
+ *  ProtectedRoutes -> CompanyDetail -> JobCardList
  * 
  */
 function CompanyDetail() {

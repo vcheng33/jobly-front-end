@@ -17,7 +17,7 @@ const TOKEN_KEYNAME = "token";
  * 
  *  State:
  *  - token: "string"
- *  - currentUser: {user}
+ *  - currentUser: { username, firstName, lastName, isAdmin, jobs }
  *  - formSubmitted: true/false
  * 
  *  App -> { Navigation, Routes }
@@ -36,7 +36,7 @@ function App() {
         console.log("token in App", { token });
         JoblyApi.token = token;
         const payload = jwt.decode(token);
-        console.log(payload);
+        console.log({payload});
         const resUser = await JoblyApi.getUser(payload.username);
         setCurrentUser(resUser);
       }
@@ -49,6 +49,7 @@ function App() {
  *  Sets the token state, localStorage and formSubmitted
  */
   async function handleLogin({ username, password }) {
+    console.log("in handleLogin", { username, password });
     const resToken = await JoblyApi.login({ username, password });
     console.log({ resToken })
     setToken(resToken);
@@ -79,16 +80,14 @@ function App() {
     localStorage.removeItem(TOKEN_KEYNAME);
   }
 
-  /** Updates up a user with data provided from ProfileForm
- *  (includes firstName, lastName, email but requires username and password)
- */
-  async function handleProfileUpdate(formData) {
-    await handleLogin(formData.username, formData.password);
-    const updateUserData = {"firstName": formData.firstName, "lastName": formData.lastName, "email": formData.email};
-    const resUser = await JoblyApi.updateUser(formData.username, updateUserData);
-    console.log(resUser);
-    setCurrentUser(curr => ({...curr, ...resUser}));
-    // console.log("current user:  ", currentUser);
+  /** Updates a user with data provided from ProfileForm
+   *  First validates username and password are correct.
+   *  Then updates firstName, lastName and/or email.
+  */
+  async function handleProfileUpdate(userUpdateData) {
+    const res = await JoblyApi.updateUser(userUpdateData);
+    console.log(res);
+    setCurrentUser(curr => ({ ...curr, ...res.user }));
     setFormSubmitted(true);
   }
 

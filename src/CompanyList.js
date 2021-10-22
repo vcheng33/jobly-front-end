@@ -4,8 +4,6 @@ import JoblyApi from "./JoblyApi";
 import CompanyCard from "./CompanyCard";
 import SearchForm from "./SearchForm";
 
-import "./CompanyList.css";
-
 /** Component for showing a list of all Companies
  *  in the database
  * 
@@ -18,8 +16,9 @@ import "./CompanyList.css";
  *          [ { handle, name, description, numEmployees, logoUrl }, ...] 
  *      }
  *  - searchTerm from searchForm
+ *  - error: [errorMessage if applicable]
  * 
- *  Routes -> CompanyList -> CompanyCard
+ *  ProtectedRoutes -> CompanyList -> CompanyCard
  * 
  */
 function CompanyList() {
@@ -28,7 +27,6 @@ function CompanyList() {
     const [searchTerm, setSearchTerm] = useState("");
     const [error, setError] = useState(null);
 
-    // debugger;
     useEffect(function fetchCompanyListOnLoad() {
         async function fetchCompanyList() {
             try {
@@ -53,7 +51,7 @@ function CompanyList() {
     if (companyList.length === 0) {
         return (
             <div>
-                <div className="CompanyCard col-md-8 offset-md-2 text-center">
+                <div className="CompanyCard col-md-8 offset-md-2 text-center mb-4">
                     <SearchForm handleSearch={handleSearch} />
                     <h2>No Results Found</h2>
                 </div>

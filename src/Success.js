@@ -2,21 +2,19 @@
  * to profile and signup forms
  * 
  *  Props:
- *  - error (an error message)
+ *  - message (a successful message to show)
  * 
  *  State:
  *  - None
  * 
  *  { LoginForm, SignUpForm, ProfileForm } -> Alert
  */
-function Alert({ error }) {
+ function Success({msg}) {
     return (
         <div>
-            <h2 className="alert alert-danger text-center m-5">{error}</h2>
+            <h2 className="alert alert-success text-center m-5">{msg}</h2>
         </div>
     )
 }
 
-export default Alert;
-
-// update this to access status
+export default Success;

@@ -26,9 +26,6 @@ function LoginForm({ initalFormData = INITIAL_STATE, handleLogin }) {
     const [error, setError] = useState(null);
     console.log("LoginForm, ", { initalFormData, handleLogin, formData });
 
-    // if current user is false, set formSubmitted to false
-    // useEffect here on initial rendering
-
     /** Update form input. */
     function handleChange(evt) {
         const { name, value } = evt.target;
@@ -44,7 +41,6 @@ function LoginForm({ initalFormData = INITIAL_STATE, handleLogin }) {
         try {
             console.log("Check out state ->", formData);
             await handleLogin(formData);
-            // setFormData(INITIAL_STATE);
         } catch (err) {
             console.log({err});
             setError(err);

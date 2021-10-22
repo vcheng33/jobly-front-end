@@ -14,6 +14,7 @@ import SearchForm from "./SearchForm";
  *      [ { id, title, salary, equity, companyHandle, companyName }, ...] 
  *    }
  *  - searchTerm from searchForm
+ *  - error: [errorMessage if applicable]
  * 
  *  Routes -> JobList -> { SearchForm, JobCardList }
  */
@@ -45,7 +46,7 @@ function JobList() {
     if (jobList.length === 0) {
         return (
             <div>
-                <div className="JobCardList col-md-8 offset-md-2 text-center">
+                <div className="JobCardList col-md-8 offset-md-2 text-center mb-4">
                     <SearchForm handleSearch={handleSearch} />
                     <h2>No Results Found</h2>
                 </div>

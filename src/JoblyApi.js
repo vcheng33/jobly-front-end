@@ -34,7 +34,7 @@ class JoblyApi {
       return (await axios({ url, method, data, params, headers })).data;
     } catch (err) {
       console.error("API Error:", err.response);
-      let message = err.response.data.error.message;
+      const message = err.response.data.error.message;
       throw Array.isArray(message) ? message : [message];
     }
   }
@@ -44,7 +44,7 @@ class JoblyApi {
   /** Get details on a company by handle. */
 
   static async getCompany(handle) {
-    let res = await this.request(`companies/${handle}`);
+    const res = await this.request(`companies/${handle}`);
     console.log("res.companies: ", res.company);
     return res.company;
   }
@@ -77,8 +77,8 @@ class JoblyApi {
    *  formData = {username, password}
    *  returns: "token"
   */
-  static async login(formData) {
-    let res = await this.request('auth/token', formData, "post");
+  static async login({username, password}) {
+    const res = await this.request('auth/token', {username,password}, "post");
     console.log("login response: ", res);
     return res.token;
   }
@@ -89,7 +89,7 @@ class JoblyApi {
    *  returns: "token"
   */
   static async register(formData) {
-    let res = await this.request('auth/register', formData, "post");
+    const res = await this.request('auth/register', formData, "post");
     console.log("register response: ", res);
     return res.token;
   }
@@ -101,25 +101,27 @@ class JoblyApi {
    *  
   */
   static async getUser(username) {
-    let res = await this.request(`users/${username}`)
+    const res = await this.request(`users/${username}`)
     console.log("getUser response", res);
     return res.user;
   }
 
-    /** Updates a user's information 
-   * 
-   *  returns: 
-   *  { username, firstName, lastName, isAdmin, jobs }
+    /** Authenticates user and then updates a user's information 
    *  
+   *  returns: {
+   *    user: { username, firstName, lastName, isAdmin, jobs },
+   *    token: "token"
+   *  }
   */
-    static async updateUser(username, updateUserData) {
-      let res = await this.request(`users/${username}`, updateUserData, "patch")
+    static async updateUser(formData) {
+      const { username, password, firstName, lastName, email } = formData
+      await this.request('auth/token', {username,password}, "post");
+
+      const userUpdateData = { firstName, lastName, email }
+      const res = await this.request(`users/${username}`, userUpdateData, "patch")
       console.log("Update User response", res);
       return res.user;
-    }
-  
+    }  
 }
-
-
 
 export default JoblyApi;
