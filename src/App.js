@@ -58,6 +58,7 @@ function App() {
   }
 
   /** Signs up a new user with data provided from SignUpForm
+   *  (includes username, password, firstName, lastName, email)
    *  Gets a token from the server
    *  Sets the token state, localStorage and formSubmitted
    */
