@@ -45,11 +45,11 @@ function ProfileForm({ handleProfileUpdate }) {
     }
 
     /** Call parent function and clear form. */
-    function handleSubmit(evt) {
+    async function handleSubmit(evt) {
         evt.preventDefault();
         try {
             console.log("Check out state ->", formData);
-            handleProfileUpdate(formData);
+            await handleProfileUpdate(formData);
         } catch (err) {
             console.log({err});
             setError(err)

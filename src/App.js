@@ -83,6 +83,7 @@ function App() {
  *  (includes firstName, lastName, email but requires username and password)
  */
   async function handleProfileUpdate(formData) {
+    await handleLogin(formData.username, formData.password);
     const updateUserData = {"firstName": formData.firstName, "lastName": formData.lastName, "email": formData.email};
     const resUser = await JoblyApi.updateUser(formData.username, updateUserData);
     console.log(resUser);
