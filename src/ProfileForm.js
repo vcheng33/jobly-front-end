@@ -25,13 +25,13 @@ import Success from "./Success";
 
 
 function ProfileForm({ handleProfileUpdate }) {
-    const { user } = useContext(UserContext);
+    const { currentUser } = useContext(UserContext);
     const userData = {
-        username: user.username,
+        username: currentUser.username,
         password: "",
-        firstName: user.firstName,
-        lastName: user.lastName,
-        email: user.email,
+        firstName: currentUser.firstName,
+        lastName: currentUser.lastName,
+        email: currentUser.email,
     }
     const [formData, setFormData] = useState(userData);
     const [error, setError] = useState(null);

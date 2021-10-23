@@ -55,7 +55,6 @@ function App() {
     console.log({ resToken })
     setToken(resToken);
     localStorage.setItem(TOKEN_KEYNAME, resToken);
-    console.log(localStorage);
     setFormSubmitted(true);
   }
 

@@ -16,15 +16,15 @@ import UserContext from "./UserContext";
  */
 
 function Navigation({ handleLogout }) {
-  const { user }= useContext(UserContext);
-
+  const { currentUser }= useContext(UserContext);
+  console.log({ currentUser });
   return (
     <nav className="Navigation navbar navbar-expand-sm">
       <div className="container-fluid">
         <NavLink exact to="/" className="navbar-brand text-white ms-3">
           Jobly
         </NavLink>
-        {user && <ul className="navbar-nav ms-auto">
+        {currentUser && <ul className="navbar-nav ms-auto">
           <li className="nav-item me-4" >
             <NavLink exact to="/companies" className="text-decoration-none">
               Companies
@@ -46,7 +46,7 @@ function Navigation({ handleLogout }) {
             </NavLink>
           </li>
         </ul>}
-        {!user && <ul className="navbar-nav ms-auto">
+        {!currentUser && <ul className="navbar-nav ms-auto">
           <li className="nav-item me-4" >
             <NavLink exact to="/login" className="text-decoration-none">
               Login

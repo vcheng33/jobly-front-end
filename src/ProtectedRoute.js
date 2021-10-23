@@ -17,8 +17,8 @@ import { Route, Redirect } from "react-router-dom";
  *   
 */
 function ProtectedRoute(props) {
-    const { user } = useContext(UserContext);
-    if (!user) return <Redirect to="/"/>
+    const { currentUser } = useContext(UserContext);
+    if (!currentUser) return <Redirect to="/"/>
     return (
         <Route path={props.path} exact={props.exact} {...props}>
             {props.children}
