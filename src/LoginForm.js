@@ -50,32 +50,35 @@ function LoginForm({ initalFormData = INITIAL_STATE, handleLogin }) {
             {error && <Alert error={error} />}
             <form className="LoginForm row mt-3" onSubmit={handleSubmit}>
 
-                <div className="form-group col-md-4 offset-md-4 justify-content-evenly mt-5">
-                    <label htmlFor="username">Username</label>
-                    <input
-                        id="username"
-                        name="username"
-                        className="form-control"
-                        onChange={handleChange}
-                        value={formData.username}
-                        aria-label="Enter Username"
-                        required
-                    />
-
-                    <label htmlFor="password">Password</label>
-                    <input
-                        id="password"
-                        name="password"
-                        type="password"
-                        className="form-control"
-                        onChange={handleChange}
-                        value={formData.password}
-                        aria-label="Enter Password"
-                        required
-                    />
+                <div className="form-group col-md-6 offset-md-3 justify-content-evenly mt-5">
+                    <div className="mb-3">
+                        <label htmlFor="username">USERNAME</label>
+                        <input
+                            id="username"
+                            name="username"
+                            className="form-control"
+                            onChange={handleChange}
+                            value={formData.username}
+                            aria-label="Enter Username"
+                            required
+                        />
+                    </div>
+                    <div className="mb-3">
+                        <label htmlFor="password">PASSWORD</label>
+                        <input
+                            id="password"
+                            name="password"
+                            type="password"
+                            className="form-control"
+                            onChange={handleChange}
+                            value={formData.password}
+                            aria-label="Enter Password"
+                            required
+                        />
+                    </div>
                     <div className="row justify-content-evenly">
-                        <button className="btn-primary btn btn-sm Submit-Btn mt-2 mb-5 col-auto">
-                            Submit
+                        <button className="btn-secondary btn-sm Submit-Btn mt-2 mb-5 col-auto">
+                            SUBMIT
                         </button>
                     </div>
                 </div>

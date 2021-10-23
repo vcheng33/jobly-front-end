@@ -12,7 +12,6 @@ import { Link } from "react-router-dom";
  *
  */
 function CompanyCard({ handle, name, description, logo }) {
-    console.log("CompanyCard:", { handle, name, description, logo })
     const linkURL = `/companies/${handle}`;
 
     return (
@@ -23,10 +22,14 @@ function CompanyCard({ handle, name, description, logo }) {
                 <h6 className="card-header text-uppercase">{name}</h6>
                 <div className="card-body">
                     <div className="media">
-                        {logo !== null &&
-                            <img src={logo} alt="logo" class="col-1 float-start m-2"></img>}
                         <div className="media-body">
-                            <div className="card-text ms-5 me-4">{description}</div>
+                            <div className="row">
+                                    {logo !== null &&
+                                        <img src={logo} alt="logo" className="col-2 justify-content-center align-self-center float-start" id="CompanyCard-img"></img>}
+                                <div className="col-10">
+                                    <div className="card-text ms-3 me-4">{description}</div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

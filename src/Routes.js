@@ -20,8 +20,8 @@ import ProtectedRoute from "./ProtectedRoute";
  *  - None
  * 
  *  App -> Routes  
- *      -> ProtectedRoute -> { CompanyList, CompanyDetail, JobList, ProfileForm } 
- *      -> { Homepage, LoginForm, SignUpForm }
+ *   -> ProtectedRoute -> { CompanyList, CompanyDetail, JobList, ProfileForm, handleApplyToJob } 
+ *   -> { Homepage, LoginForm, SignUpForm }
 */
 function Routes({ handleLogin, handleSignUp, handleProfileUpdate }) {
     return (

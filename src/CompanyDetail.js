@@ -52,7 +52,9 @@ function CompanyDetail() {
         <div className="CompanyDetail col-md-8 offset-md-2 text-center">
             <h2 className="mt-3">{company.name}</h2>
             <p>{company.description}</p>
-            <JobCardList jobList={company.jobs} />
+            <JobCardList 
+                jobList={company.jobs} 
+            />
         </div>
     )
 }

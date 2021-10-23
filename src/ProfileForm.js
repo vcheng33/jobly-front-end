@@ -25,7 +25,7 @@ import Success from "./Success";
 
 
 function ProfileForm({ handleProfileUpdate }) {
-    const user = useContext(UserContext);
+    const { user } = useContext(UserContext);
     const userData = {
         username: user.username,
         password: "",
@@ -63,8 +63,9 @@ function ProfileForm({ handleProfileUpdate }) {
             {success && <Success msg="User successfully updated" />}
             <form className="ProfileForm m-3 mx-5" onSubmit={handleSubmit}>
 
-                <div className="form-group col-md-4 offset-md-4 justify-content-evenly mt-5">
-                    <label htmlFor="username">Username</label>
+                <div className="form-group col-md-6 offset-md-3 justify-content-evenly mt-5">
+                    <div className="mb-3">
+                    <label htmlFor="username">USERNAME</label>
                     <input
                         id="username"
                         name="username"
@@ -74,8 +75,9 @@ function ProfileForm({ handleProfileUpdate }) {
                         aria-label="Enter Username"
                         disabled
                     />
-
-                    <label htmlFor="firstName">First Name</label>
+                    </div>
+                    <div className="mb-3">
+                    <label htmlFor="firstName">FIRST NAME</label>
                     <input
                         id="firstName"
                         name="firstName"
@@ -85,8 +87,9 @@ function ProfileForm({ handleProfileUpdate }) {
                         aria-label="Enter First Name"
                         required
                     />
-
-                    <label htmlFor="lastName">Last Name</label>
+                    </div>
+                    <div className="mb-3">
+                    <label htmlFor="lastName">LAST NAME</label>
                     <input
                         id="lastName"
                         name="lastName"
@@ -96,8 +99,9 @@ function ProfileForm({ handleProfileUpdate }) {
                         aria-label="Enter Last Name"
                         required
                     />
-
-                    <label htmlFor="email">Email</label>
+                    </div>
+                    <div className="mb-3">
+                    <label htmlFor="email">EMAIL</label>
                     <input
                         id="email"
                         name="email"
@@ -108,8 +112,9 @@ function ProfileForm({ handleProfileUpdate }) {
                         aria-label="Enter Email"
                         required
                     />
-
-                    <label htmlFor="password">Confirm password to make changes:</label>
+                    </div>
+                    <div className="mb-3">
+                    <label htmlFor="password">CONFIRM PASSWORD TO MAKE CHANGES:</label>
                     <input
                         id="password"
                         name="password"
@@ -120,10 +125,10 @@ function ProfileForm({ handleProfileUpdate }) {
                         aria-label="Enter Password"
                         required
                     />
-
+                    </div>
                 </div>
                 <div className="row justify-content-evenly">
-                    <button className="btn-primary btn btn-sm ProfileForm-save-btn mt-2 mb-5 col-auto">
+                    <button className="btn-secondary btn btn-sm ProfileForm-save-btn mt-2 mb-5 col-auto">
                         Save Changes
                     </button>
                 </div>

@@ -4,7 +4,8 @@ import JobCard from "./JobCard";
  *  JobCard for every job in the list
  * 
  *  Props:  
- *  - jobList (array of jobs)
+ *  - jobList:
+ *      [ { id, title, salary, equity, companyHandle, companyName }, ...]
  * 
  *  State:
  *  - None
@@ -15,14 +16,14 @@ import JobCard from "./JobCard";
  */
 
 function JobCardList({ jobList }) {
-    console.log("JobCardList", { jobList });
+
     return (
         <div>
             {jobList.map(j => (
                 <JobCard
                     key={j.id}
+                    id={j.id}
                     title={j.title}
-                    company={j.companyName}
                     salary={j.salary === null
                         ? "Ask Company Representative"
                         : `$${j.salary.toLocaleString()}`

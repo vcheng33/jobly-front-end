@@ -16,44 +16,44 @@ import UserContext from "./UserContext";
  */
 
 function Navigation({ handleLogout }) {
-  const currentUser = useContext(UserContext);
+  const { user }= useContext(UserContext);
 
   return (
-    <nav className="Navigation navbar navbar-dark bg-primary navbar-expand-md">
+    <nav className="Navigation navbar navbar-expand-sm">
       <div className="container-fluid">
-        <NavLink exact to="/" className="navbar-brand ms-3">
+        <NavLink exact to="/" className="navbar-brand text-white ms-3">
           Jobly
         </NavLink>
-        {currentUser && <ul className="navbar-nav ms-auto">
+        {user && <ul className="navbar-nav ms-auto">
           <li className="nav-item me-4" >
-            <NavLink exact to="/companies" id="Navigation-link-companies">
+            <NavLink exact to="/companies" className="text-decoration-none">
               Companies
             </NavLink>
           </li>
           <li className="nav-item me-4" >
-            <NavLink exact to="/jobs" id="Navigation-link-jobs">
+            <NavLink exact to="/jobs" className="text-decoration-none">
               Jobs
             </NavLink>
           </li>
           <li className="nav-item me-4" >
-            <NavLink exact to="/profile" id="Navigation-link-profile">
+            <NavLink exact to="/profile" className="text-decoration-none">
               Profile
             </NavLink>
           </li>
-          <li className="nav-item me-4" >
-            <NavLink exact to="/" id="Navigation-link-logout" onClick={handleLogout}>
+          <li className="nav-item" >
+            <NavLink exact to="/" className="text-decoration-none" onClick={handleLogout}>
               Logout
             </NavLink>
           </li>
         </ul>}
-        {!currentUser && <ul className="navbar-nav ms-auto">
+        {!user && <ul className="navbar-nav ms-auto">
           <li className="nav-item me-4" >
-            <NavLink exact to="/login" id="Navigation-link-login">
+            <NavLink exact to="/login" className="text-decoration-none">
               Login
             </NavLink>
           </li>
-          <li className="nav-item me-4 text-nowrap" >
-            <NavLink exact to="/signup" id="Navigation-link-signup">
+          <li className="nav-item text-nowrap" >
+            <NavLink exact to="/signup" className="text-decoration-none">
               Sign Up
             </NavLink>
           </li>

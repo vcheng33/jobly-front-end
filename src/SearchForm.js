@@ -51,7 +51,7 @@ function SearchForm({ initalFormData = INITIAL_STATE, handleSearch }) {
           value={formData.searchTerm}
           aria-label="Enter Search Term"
         />
-        <button className="btn-primary btn SearchForm-Btn ml-1 col-auto">
+        <button className="btn-secondary btn SearchForm-Btn ml-1 col-auto">
           Search
         </button>
         </div>

@@ -27,6 +27,7 @@ function App() {
   const [currentUser, setCurrentUser] = useState(null);
   const [token, setToken] = useState(localStorage.getItem(TOKEN_KEYNAME));
   const [formSubmitted, setFormSubmitted] = useState(null);
+  const [applicationIds, setApplicationIds] = useState(new Set([]));
   console.log("App has rendered", { currentUser, token, formSubmitted })
 
   useEffect(function updateCurrentUser() {
@@ -36,7 +37,7 @@ function App() {
         console.log("token in App", { token });
         JoblyApi.token = token;
         const payload = jwt.decode(token);
-        console.log({payload});
+        console.log({ payload });
         const resUser = await JoblyApi.getUser(payload.username);
         setCurrentUser(resUser);
       }
@@ -74,8 +75,10 @@ function App() {
    *  Sets the currentUser to null, sets formSubmitted to false
    *  Removes the token from localStorage
   */
-  async function handleLogout() {
+  function handleLogout() {
     setCurrentUser(null);
+    setToken(null);
+    setApplicationIds(new Set([]));
     setFormSubmitted(false);
     localStorage.removeItem(TOKEN_KEYNAME);
   }
@@ -91,8 +94,22 @@ function App() {
     setFormSubmitted(true);
   }
 
+  /** Checks if a job has been applied for. */
+  function hasAppliedToJob(id) {
+    return applicationIds.has(id);
+  }
+
+  async function handleApplyToJob(username, id) {
+    await JoblyApi.applyToJob(username, id)
+    setApplicationIds(curr => new Set([...curr, id]));
+  }
+
   return (
-    < UserContext.Provider value={currentUser}>
+    < UserContext.Provider value={
+        {currentUser, 
+        hasAppliedToJob,
+        handleApplyToJob
+    }}>
       <div className="App">
         <Navigation
           handleLogout={handleLogout}

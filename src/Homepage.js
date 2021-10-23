@@ -13,14 +13,16 @@ import UserContext from "./UserContext";
  *  App -> Routes -> Homepage
  */
 function Homepage() {
-    const currentUser = useContext(UserContext);
+    const { user } = useContext(UserContext);
     return (
         <div className="Homepage container text-center mt-5">
-            <h1 className="mb-4 fw-bold">Jobly</h1>
+            <div className="jumbotron">
+            <h1 className="Homepage-header mb-4 fw-bold display-1">Jobly</h1>
             <p className="lead">Find jobs in one convenient place.</p>
-            {currentUser &&
-                <h2>Welcome {currentUser.firstName} {currentUser.lastName}!</h2>
+            {user &&
+                <h2>Welcome {user.firstName} {user.lastName}!</h2>
             }
+            </div>
         </div>
     )
 }
