@@ -17,7 +17,7 @@ import UserContext from "./UserContext";
 
 function Navigation({ handleLogout }) {
   const { currentUser }= useContext(UserContext);
-  console.log({ currentUser });
+
   return (
     <nav className="Navigation navbar navbar-expand-sm">
       <div className="container-fluid">
