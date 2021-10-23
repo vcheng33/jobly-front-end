@@ -27,7 +27,6 @@ const INITIAL_STATE = {
 function SignUpForm({ initalFormData = INITIAL_STATE, handleSignUp }) {
     const [formData, setFormData] = useState(initalFormData);
     const [error, setError] = useState(null);
-    console.log("SignUpForm, ", { initalFormData, handleSignUp, error, formData });
 
     /** Update form input. */
     function handleChange(evt) {

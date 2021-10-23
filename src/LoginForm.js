@@ -24,7 +24,6 @@ const INITIAL_STATE = {
 function LoginForm({ initalFormData = INITIAL_STATE, handleLogin }) {
     const [formData, setFormData] = useState(initalFormData);
     const [error, setError] = useState(null);
-    console.log("LoginForm, ", { initalFormData, handleLogin, formData });
 
     /** Update form input. */
     function handleChange(evt) {
