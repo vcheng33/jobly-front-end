@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import UserContext from "./UserContext";
 
 /** Component to show a single job card
@@ -14,19 +14,31 @@ import UserContext from "./UserContext";
 
 function JobCard({ id, title, salary, equity }) {
     const { hasAppliedToJob, handleApplyToJob } = useContext(UserContext);
-    const jobApplied = hasAppliedToJob(id);
+    const [applied, setApplied] = useState(false);
+
+    useEffect(function updatedAppliedStatus() {
+        setApplied(hasAppliedToJob(+id));
+    }, [id, hasAppliedToJob])
+
+    async function handleApply(evt) {
+        console.log({id});
+        if (hasAppliedToJob(id)) return;
+        await handleApplyToJob(id);
+        setApplied(true);
+    }
 
     return (
         <div id={id} className="JobCard card mb-4">
             <h6 className="card-header text-uppercase">{title}</h6>
             <div className="card-body">
-                <div className="mt-3"><small>Salary: {salary}</small></div>
-                <div><small>Equity: {equity}</small></div>
-                {!jobApplied &&
-                    <button className="btn btn-outline-success" onClick={handleApplyToJob}>
+                <div className=""><small>Salary: {salary}</small></div>
+                <div className="mb-2"><small>Equity: {equity}</small></div>
+                {!applied &&
+                    <button className="btn btn-outline-success" 
+                            onClick={handleApply}>
                         Apply
                     </button>}
-                {jobApplied && <button className="btn btn-success">Applied</button>}
+                {applied && <button className="btn btn-success">Applied</button>}
             </div>
         </div>
     )

@@ -98,8 +98,8 @@ function App() {
     return applicationIds.has(id);
   }
 
-  async function handleApplyToJob(username, id) {
-    await JoblyApi.applyToJob(username, id)
+  async function handleApplyToJob(id) {
+    await JoblyApi.applyToJob(currentUser.username, id)
     setApplicationIds(curr => new Set([...curr, id]));
   }
 

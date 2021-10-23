@@ -73,6 +73,7 @@ function ProfileForm({ handleProfileUpdate }) {
                         onChange={handleChange}
                         value={formData.username}
                         aria-label="Enter Username"
+                        autoComplete="username"
                         disabled
                     />
                     </div>
@@ -85,6 +86,7 @@ function ProfileForm({ handleProfileUpdate }) {
                         onChange={handleChange}
                         value={formData.firstName}
                         aria-label="Enter First Name"
+                        autoComplete="firstName"
                         required
                     />
                     </div>
@@ -97,6 +99,7 @@ function ProfileForm({ handleProfileUpdate }) {
                         onChange={handleChange}
                         value={formData.lastName}
                         aria-label="Enter Last Name"
+                        autoComplete="lastName"
                         required
                     />
                     </div>
@@ -110,6 +113,7 @@ function ProfileForm({ handleProfileUpdate }) {
                         onChange={handleChange}
                         value={formData.email}
                         aria-label="Enter Email"
+                        autoComplete="email"
                         required
                     />
                     </div>
@@ -122,6 +126,7 @@ function ProfileForm({ handleProfileUpdate }) {
                         className="form-control"
                         onChange={handleChange}
                         value={formData.password}
+                        autoComplete="current-password"
                         aria-label="Enter Password"
                         required
                     />
