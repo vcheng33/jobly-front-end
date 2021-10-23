@@ -28,17 +28,14 @@ function App() {
   const [token, setToken] = useState(localStorage.getItem(TOKEN_KEYNAME));
   const [formSubmitted, setFormSubmitted] = useState(null);
   const [applicationIds, setApplicationIds] = useState(new Set([]));
-  console.log("App has rendered", { currentUser, token, formSubmitted })
+  // console.log("App has rendered", { currentUser, token, formSubmitted })
 
   useEffect(function updateCurrentUser() {
     async function getCurrentUser() {
-      console.log("existing token: ", token);
       if (token) {
-        console.log("token in App", { token });
         JoblyApi.token = token;
-        const payload = jwt.decode(token);
-        console.log({ payload });
-        const resUser = await JoblyApi.getUser(payload.username);
+        const { username } = jwt.decode(token);
+        const resUser = await JoblyApi.getUser(username);
         setCurrentUser(resUser);
       }
     }

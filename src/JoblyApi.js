@@ -21,7 +21,7 @@ class JoblyApi {
   static token = "";
 
   static async request(endpoint, data = {}, method = "get") {
-    console.debug("API Call:", endpoint, data, method);
+    // console.debug("API Call:", endpoint, data, method);
 
     const url = `${BASE_URL}/${endpoint}`;
     const headers = { Authorization: `Bearer ${JoblyApi.token}` };
@@ -78,7 +78,6 @@ class JoblyApi {
   */
   static async login({ username, password }) {
     const res = await this.request('auth/token', { username, password }, "post");
-    console.log("login response: ", res);
     return res.token;
   }
 
@@ -89,7 +88,6 @@ class JoblyApi {
   */
   static async register(formData) {
     const res = await this.request('auth/register', formData, "post");
-    console.log("register response: ", res);
     return res.token;
   }
 
@@ -101,7 +99,6 @@ class JoblyApi {
   */
   static async getUser(username) {
     const res = await this.request(`users/${username}`)
-    console.log("getUser response", res);
     return res.user;
   }
 
@@ -118,7 +115,6 @@ class JoblyApi {
 
     const userUpdateData = { firstName, lastName, email }
     const res = await this.request(`users/${username}`, userUpdateData, "patch")
-    console.log("Update User response", res);
     return res.user;
   }
 
