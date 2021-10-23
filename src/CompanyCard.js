@@ -16,7 +16,7 @@ function CompanyCard({ handle, name, description, logo }) {
 
     return (
         <div className="CompanyCard card mb-3">
-            <Link exact to={linkURL}
+            <Link exact="true" to={linkURL}
                 className="CompanyCard-card bg-white text-dark
                 text-decoration-none">
                 <h6 className="card-header text-uppercase">{name}</h6>
