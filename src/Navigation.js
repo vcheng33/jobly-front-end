@@ -21,21 +21,22 @@ function Navigation({ handleLogout }) {
   return (
     <nav className="Navigation navbar navbar-expand-sm">
       <div className="container-fluid">
-        <NavLink exact to="/" className="navbar-brand text-white ms-3">
+        <NavLink exact to="/" id="navbar-Jobly" className="navbar-brand text-white ms-2">
           Jobly
         </NavLink>
+        
         {currentUser && <ul className="navbar-nav ms-auto">
-          <li className="nav-item me-4" >
+          <li className="nav-item me-3" >
             <NavLink exact to="/companies" className="text-decoration-none">
               Companies
             </NavLink>
           </li>
-          <li className="nav-item me-4" >
+          <li className="nav-item me-3" >
             <NavLink exact to="/jobs" className="text-decoration-none">
               Jobs
             </NavLink>
           </li>
-          <li className="nav-item me-4" >
+          <li className="nav-item me-3" >
             <NavLink exact to="/profile" className="text-decoration-none">
               Profile
             </NavLink>

@@ -26,13 +26,14 @@
 
 .nav-item a {
   color: white;
-  font-size: 15px;
+  font-size: 2vw;
+  margin-right: 0.75vw;
 }
 
 .nav-item a:hover {
   color: #F4EBCD;
 }
 
-.navbar-brand a {
+#navbar-Jobly {
   font-size: 3vw;
 }

@@ -23,7 +23,6 @@ import Loading from "./Loading";
  * 
  */
 function CompanyList() {
-    console.log("CompanyList rendered");
     const [companyList, setCompanyList] = useState(null);
     const [searchTerm, setSearchTerm] = useState("");
     const [error, setError] = useState(null);
