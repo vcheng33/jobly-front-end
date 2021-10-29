@@ -26,7 +26,7 @@
 
 .nav-item a {
   color: white;
-  font-size: 2vw;
+  font-size: 2vh;
   margin-right: 0.75vw;
 }
 
@@ -35,5 +35,5 @@
 }
 
 #navbar-Jobly {
-  font-size: 3vw;
+  font-size: 3vh;
 }
