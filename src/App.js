@@ -1,12 +1,13 @@
-import './App.css';
+import "bootstrap/dist/css/bootstrap.css";
+import jwt from "jsonwebtoken";
+
 import { Redirect } from "react-router-dom";
+import { useState, useEffect } from "react";
+import UserContext from './UserContext';
+
+import JoblyApi from './JoblyApi';
 import Navigation from "./Navigation";
 import Routes from "./Routes";
-import "bootstrap/dist/css/bootstrap.css";
-import UserContext from './UserContext';
-import { useState, useEffect } from "react";
-import JoblyApi from './JoblyApi';
-import jwt from "jsonwebtoken";
 
 const TOKEN_KEYNAME = "token";
 

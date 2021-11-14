@@ -1,3 +1,4 @@
+import "./CompanyCard.css";
 import { Link } from "react-router-dom";
 
 /** Component for a single company

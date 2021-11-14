@@ -13,7 +13,7 @@ import UserContext from "./UserContext";
 */
 
 function JobCard({ id, title, salary, equity }) {
-    const { hasAppliedToJob, handleApplyToJob } = useContext(UserContext);
+    const { currentUser, hasAppliedToJob, handleApplyToJob } = useContext(UserContext);
     const [applied, setApplied] = useState(false);
 
     useEffect(function updatedAppliedStatus() {
@@ -32,13 +32,15 @@ function JobCard({ id, title, salary, equity }) {
             <h6 className="card-header text-uppercase">{title}</h6>
             <div className="card-body">
                 <div className=""><small>Salary: {salary}</small></div>
-                <div className="mb-2"><small>Equity: {equity}</small></div>
+                <div className="mb-3"><small>Equity: {equity}</small></div>
+                {currentUser && <div>
                 {!applied &&
                     <button className="btn btn-outline-success" 
                             onClick={handleApply}>
                         Apply
                     </button>}
                 {applied && <button className="btn btn-success">Applied</button>}
+                </div>}
             </div>
         </div>
     )

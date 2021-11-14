@@ -64,8 +64,8 @@ function CompanyList() {
     }
 
     return (
-        <div className="CompanyList">
-            <div className="CompanyCard col-md-8 offset-md-2">
+        <div className="CompanyList mt-2">
+            <div className="CompanyCard col-md-8 offset-md-2 pt-2">
                 <SearchForm handleSearch={handleSearch} />
                 {companyList.map(c => (
                     <CompanyCard

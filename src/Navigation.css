@@ -1,8 +1,6 @@
 .Navigation {
     text-align: left;
-    font-weight: bold;
     background-color: #404040;
-    height: 8vh;
   }
   
   /* .nav-item a:hover {
@@ -26,7 +24,6 @@
 
 .nav-item a {
   color: white;
-  font-size: 2vh;
   margin-right: 0.75vw;
 }
 
@@ -34,6 +31,8 @@
   color: #F4EBCD;
 }
 
-#navbar-Jobly {
-  font-size: 3vh;
+.Navigation-brand {
+  width: 125px;
+  margin-top: 0;
+  margin-bottom: 0;
 }

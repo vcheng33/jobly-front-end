@@ -1,5 +1,3 @@
-import "./Loading.css";
-
 /** Component that shows a loading message 
  * 
  *  Props:
@@ -13,8 +11,10 @@ import "./Loading.css";
 
 function Loading () {
     return (
-        <div className="Loading d-flex align-items-center justify-content-center">
-            <h2>Loading...</h2>
+        <div className="jumbotron">
+            <div className="Loading d-flex align-items-center justify-content-center">
+                <h2>Loading...</h2>
+            </div>
         </div>
     )
 }
