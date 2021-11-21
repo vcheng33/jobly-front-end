@@ -31,7 +31,7 @@ function Navigation({ handleLogout }) {
     <nav className="Navigation navbar navbar-expand-md navbar-absolute navbar-transparent">
       <div className="container-fluid">
         <NavLink exact to="/" id="navbar-Jobly">
-          <img src={brand} alt="brand" className="Navigation-brand my-2 ms-2"></img>
+          <img src={brand} alt="brand" className="Navigation-brand my-1 ms-2"></img>
         </NavLink>
         <NavbarToggler onClick={toggle} className="me-2 navbar-dark">
           <span className="navbar-toggler-icon"></span>
