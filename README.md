@@ -17,8 +17,16 @@ Similar browsing experience exists for jobs. User can apply to jobs, but cannot 
 Users can update their profile, but cannot change their username. Their valid password is needed to update the profile.
 
 # Project Screen Shots
-<img src="jobly_company_detail.png"
-     alt="Homepage for Share BnB App"
+<img src="jobly_homepage.png"
+     alt="Homepage for Jobly App"
+     style="float: left; margin-right: 10px; margin-bottom: 10px" />
+
+<img src="jobly_companies.png"
+     alt="Listings of companies"
+     style="float: left; margin-right: 10px; margin-bottom: 10px" />
+
+<img src="jobly_user_profile.png"
+     alt="User Profile"
      style="float: left; margin-right: 10px; margin-bottom: 10px" />
 
 # Installation Instructions
